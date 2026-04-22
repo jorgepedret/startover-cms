@@ -1,0 +1,106 @@
+<html><head>
+    <title>Page not found - Strikingly</title>
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet" type="text/css">
+    <link href="/assets/static/assets/404-styles.css" rel="stylesheet" type="text/css">
+    <!--[if lte IE 7]>
+      <style>
+        .wide { padding-top: 160px; }
+      </style>
+    <![endif]-->
+    <script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript">
+    // Google Analytics
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-25124444-6', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview', { 'anonymizeIp': true });
+    // End Google Analytics
+    </script>
+  </head>
+  <body>
+    <div class="bg-logo"></div>
+    <div class="wide light-text">
+      <div class="col2">
+        <h1> PAGE NOT FOUND.</h1>
+        <p>But if you're looking to build your own website, <br>you've come to the right place.</p>
+        <p class="buttons">
+          <a class="button dark-bg" href="https://www.strikingly.com/?utm_source=404&amp;utm_medium=internal&amp;utm_campaign=404_redirect"> Make My Own Website </a>
+        </p>
+        <a class="logo landing" href="https://www.strikingly.com/?utm_source=404&amp;utm_medium=internal&amp;utm_campaign=404_redirect&amp;utm_content=https%3A%2F%2Fdebaptizeyourself.mystrikingly.com%2F"><img src="/assets/external/uploads.strikinglycdn.com/static/other/logo-light-2x.png" width="200" height="50"></a>
+      </div>
+    </div>
+    <script>
+      ga('send', 'event', 'site', '404');
+      var links = document.getElementsByClassName('landing');
+      var href = links[0].getAttribute('href');
+      for (var i = 0; i < links.length; ++i) {
+        links[i].setAttribute('href', href + '&utm_content=' + encodeURIComponent(document.URL));
+      }
+    </script>
+  
+
+
+<script>
+// Offline backup patch: redirect CDN images to local assets and fix navigation links
+(function() {
+  // Build a map from storageKey to local asset path
+  var assetBase = "/assets/custom-images/";
+
+  // Override all img src that point to strikinglycdn
+  function fixImages() {
+    document.querySelectorAll('img').forEach(function(img) {
+      var src = img.getAttribute('src') || '';
+      var dataSrc = img.getAttribute('data-src') || '';
+
+      function localizeUrl(url) {
+        if (!url) return url;
+        // Match: //custom-images.strikinglycdn.com/res/.../ACCOUNTID/FILENAME.EXT
+        var m = url.match(/\/\/(?:custom-images|user-images)\.strikinglycdn\.com\/res\/[^\/]+\/image\/upload\/[^\/]+\/([0-9]+)\/([^?#]+)/);
+        if (m) return assetBase + m[1] + "/" + m[2];
+        return url;
+      }
+
+      var newSrc = localizeUrl(src);
+      if (newSrc !== src) img.setAttribute('src', newSrc);
+      var newDataSrc = localizeUrl(dataSrc);
+      if (newDataSrc !== dataSrc) img.setAttribute('data-src', newDataSrc);
+    });
+
+    // Fix all <a> href that are "http://slug.html" (absolute) -> "slug.html" (relative)
+    document.querySelectorAll('a[href]').forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (href && /^https?:\/\/[\w-]+\.html/.test(href)) {
+        a.setAttribute('href', href.replace(/^https?:\/\//, ''));
+      }
+    });
+
+    // Fix background images in data-bg
+    document.querySelectorAll('[data-bg]').forEach(function(el) {
+      var bg = el.getAttribute('data-bg');
+      if (bg && bg.indexOf('strikinglycdn') !== -1) {
+        var m = bg.match(/\/\/(?:custom-images|user-images)\.strikinglycdn\.com\/res\/[^\/]+\/image\/upload\/[^\/]+\/([0-9]+)\/([^?#]+)/);
+        if (m) {
+          var local = assetBase + m[1] + "/" + m[2];
+          el.setAttribute('data-bg', local);
+          el.style.backgroundImage = 'url("' + local + '")';
+        }
+      }
+    });
+  }
+
+  // Run after DOM is fully loaded and after Strikingly JS has rendered
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(fixImages, 500); });
+  } else {
+    setTimeout(fixImages, 500);
+  }
+  // Also run after a longer delay to catch lazy-loaded content
+  setTimeout(fixImages, 2000);
+  setTimeout(fixImages, 5000);
+})();
+</script>
+</body></html>
