@@ -1,16 +1,15 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-
-const TinaAdmin = dynamic(() => import('tinacms/dist/admin'), {
-  ssr: false,
-  loading: () => (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      <p>Loading TinaCMS...</p>
-    </div>
-  ),
-});
+import { useEffect } from 'react';
 
 export default function AdminPage() {
-  return <TinaAdmin />;
+  useEffect(() => {
+    window.location.href = '/admin/index.html';
+  }, []);
+
+  return (
+    <div className="flex items-center justify-center h-screen text-white bg-slate-900">
+      Loading TinaCMS editor...
+    </div>
+  );
 }
