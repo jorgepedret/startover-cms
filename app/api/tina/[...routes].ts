@@ -6,10 +6,12 @@ const handler = TinaNodeBackend({
   databaseClient,
 });
 
-export async function GET(req: Request) {
-  return handler(req);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function GET(req: Request, ctx: any) {
+  return handler(req, ctx);
 }
 
-export async function POST(req: Request) {
-  return handler(req);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function POST(req: Request, ctx: any) {
+  return handler(req, ctx);
 }
