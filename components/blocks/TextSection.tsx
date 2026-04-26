@@ -13,7 +13,9 @@ export default function TextSection({ title, body, titleField, bodyField }: Text
       {title && <h2 className="text-3xl font-bold mb-4" data-tina-field={titleField}>{title}</h2>}
       {body && (
         <div className="text-lg text-gray-700 prose prose-lg" data-tina-field={bodyField}>
-          <TinaMarkdown content={body} />
+          {typeof body === 'string'
+            ? body.split('\n\n').map((p, i) => <p key={i}>{p.trim()}</p>)
+            : <TinaMarkdown content={body} />}
         </div>
       )}
     </section>

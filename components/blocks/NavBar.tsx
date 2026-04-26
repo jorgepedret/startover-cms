@@ -1,3 +1,5 @@
+'use client';
+
 export interface NavItem {
   label: string;
   target: string;
