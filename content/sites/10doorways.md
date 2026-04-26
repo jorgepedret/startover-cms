@@ -2,7 +2,7 @@
 title: 10 Doorway
 slug: 10doorways
 blocks:
-  - title: 10 Doorways to Heaven
+  - title: 100 Doorways
     subtitle: Open Your Possibilities
     image: ''
     showInNav: true
