@@ -8,10 +8,10 @@ const handler = TinaNodeBackend({
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function GET(req: Request, ctx: any) {
-  return handler(req, ctx);
+  return handler(req as any, ctx);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function POST(req: Request, ctx: any) {
-  return handler(req, ctx);
+  return handler(req as any, ctx);
 }
