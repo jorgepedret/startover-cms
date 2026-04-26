@@ -137,9 +137,6 @@ export default defineConfig({
   branch: "main",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "",
   token: process.env.TINA_TOKEN || "",
-  // In production (Vercel), route API calls to the self-hosted Next.js API route.
-  // In local dev (TINA_PUBLIC_IS_LOCAL=true), the TinaCMS dev server at :4001 is used instead.
-  contentApiUrlOverride: process.env.TINA_PUBLIC_IS_LOCAL !== "true" ? "/api/tina/gql" : undefined,
   build: {
     outputFolder: "admin",
     publicFolder: "public",
