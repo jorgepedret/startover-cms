@@ -19,7 +19,7 @@ blocks:
     navLabel: Gallery
     _template: gallery
   - title: Friends & Colleagues
-    image: /uploads/Mike Clearfield - Break Free (Official Intro)_720p.mp4
+    image: /uploads/Mike%20Clearfield%20-%20Break%20Free%20(Official%20Intro)_720p.mp4
     layout: right
     showInNav: true
     navLabel: ''
