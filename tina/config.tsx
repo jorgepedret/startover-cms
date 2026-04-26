@@ -1,7 +1,8 @@
 import React from "react";
 import { defineConfig } from "tinacms";
 
-const AdvancedIdField = ({ input }: { input: React.InputHTMLAttributes<HTMLInputElement> & { value: string } }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AdvancedIdField = ({ input }: any) => {
   const [open, setOpen] = React.useState(false);
   return (
     <div style={{ marginTop: 4 }}>
