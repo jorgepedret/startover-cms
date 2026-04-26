@@ -1,0 +1,68 @@
+fragment SiteParts on Site {
+  __typename
+  title
+  slug
+  blocks {
+    __typename
+    ... on SiteBlocksHero {
+      title
+      subtitle
+      image
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksTextSection {
+      title
+      body
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksGallery {
+      title
+      images {
+        __typename
+        src
+        alt
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksBigMedia {
+      title
+      image
+      layout
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksFullWidthImage {
+      title
+      image
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksVideoBlock {
+      title
+      videoUrl
+      showInNav
+      navLabel
+      blockId
+    }
+  }
+}
+
+fragment HomepageParts on Homepage {
+  __typename
+  title
+  subtitle
+}
+
+fragment TemplateParts on Template {
+  __typename
+  name
+  description
+}
