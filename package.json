@@ -10,9 +10,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@tinacms/cli": "^2.2.3",
-    "gray-matter": "^4.0.3",
     "@tinacms/datalayer": "^2.0.16",
+    "gray-matter": "^4.0.3",
     "nanoid": "^4.0.2",
     "next": "16.2.4",
     "react": "19.2.4",
@@ -21,6 +20,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tinacms/cli": "^2.2.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
