@@ -2,8 +2,8 @@
 title: 10 Doorway
 slug: 10doorways
 blocks:
-  - title: 100 Doorways
-    subtitle: Open Your Possibilities
+  - title: 10 Doorways
+    subtitle: Open Your Possibilities to fantastic
     image: ''
     showInNav: true
     navLabel: Home
