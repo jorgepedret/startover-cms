@@ -4,7 +4,7 @@ slug: 10doorways
 blocks:
   - title: 10 Doorways
     subtitle: Open Your Possibilities to fantastic
-    image: ''
+    image: /uploads/20230401_162137.jpg
     showInNav: true
     navLabel: Home
     _template: hero
