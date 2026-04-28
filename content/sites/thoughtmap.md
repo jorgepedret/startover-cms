@@ -8,6 +8,7 @@ blocks:
   - _template: textSection
     title: "Explore"
     body: "Navigate through interconnected ideas and discover patterns."
-  - _template: fullWidthImage
+  - _template: bigMedia
     title: "Journey"
+    mediaType: image
 ---

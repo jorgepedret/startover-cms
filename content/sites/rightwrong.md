@@ -19,7 +19,8 @@ blocks:
     _template: bigMedia
   - title: This is Olivia & Dada Jorge
     image: /uploads/20230508_201343.jpg
+    mediaType: image
     showInNav: true
-    _template: fullWidthImage
+    _template: bigMedia
 ---
 

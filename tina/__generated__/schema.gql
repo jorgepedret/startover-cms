@@ -93,18 +93,99 @@ type Collection {
 
 union DocumentNode = Site | Homepage | Template | Folder
 
+type SiteBlocksHeroPrimaryButton {
+  label: String
+  url: String
+}
+
+type SiteBlocksHeroSecondaryButton {
+  label: String
+  url: String
+}
+
 type SiteBlocksHero {
+  layout: String
+  height: String
+  backgroundType: String
+  image: String
+  videoUrl: String
+  backgroundColor: String
+  overlayColor: String
+  overlayOpacity: Float
   title: String
   subtitle: String
-  image: String
+  primaryButton: SiteBlocksHeroPrimaryButton
+  secondaryButton: SiteBlocksHeroSecondaryButton
   showInNav: Boolean
   navLabel: String
   blockId: String
 }
 
+type SiteBlocksTextSectionImages {
+  src: String
+  alt: String
+}
+
+type SiteBlocksTextSectionPrimaryButton {
+  label: String
+  url: String
+}
+
+type SiteBlocksTextSectionSecondaryButton {
+  label: String
+  url: String
+}
+
 type SiteBlocksTextSection {
+  layout: String
   title: String
+  subtitle: String
   body: JSON
+  images: [SiteBlocksTextSectionImages]
+  primaryButton: SiteBlocksTextSectionPrimaryButton
+  secondaryButton: SiteBlocksTextSectionSecondaryButton
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+type SiteBlocksInfoBoxesCardsButton {
+  label: String
+  url: String
+}
+
+type SiteBlocksInfoBoxesCards {
+  mediaType: String
+  icon: String
+  image: String
+  title: String
+  titleLink: String
+  description: String
+  button: SiteBlocksInfoBoxesCardsButton
+}
+
+type SiteBlocksInfoBoxes {
+  title: String
+  columns: String
+  cards: [SiteBlocksInfoBoxesCards]
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+type SiteBlocksFeatureListItems {
+  mediaType: String
+  icon: String
+  image: String
+  title: String
+  description: String
+}
+
+type SiteBlocksFeatureList {
+  layout: String
+  title: String
+  intro: JSON
+  items: [SiteBlocksFeatureListItems]
   showInNav: Boolean
   navLabel: String
   blockId: String
@@ -113,42 +194,147 @@ type SiteBlocksTextSection {
 type SiteBlocksGalleryImages {
   src: String
   alt: String
+  caption: String
+  titleOverlay: String
+  linkUrl: String
 }
 
 type SiteBlocksGallery {
   title: String
+  displayMode: String
+  columns: String
+  autoplay: Boolean
+  navigation: String
   images: [SiteBlocksGalleryImages]
   showInNav: Boolean
   navLabel: String
   blockId: String
 }
 
+type SiteBlocksBigMediaPrimaryButton {
+  label: String
+  url: String
+}
+
+type SiteBlocksBigMediaSecondaryButton {
+  label: String
+  url: String
+}
+
 type SiteBlocksBigMedia {
-  title: String
+  mediaType: String
   image: String
-  layout: String
-  showInNav: Boolean
-  navLabel: String
-  blockId: String
-}
-
-type SiteBlocksFullWidthImage {
-  title: String
-  image: String
-  showInNav: Boolean
-  navLabel: String
-  blockId: String
-}
-
-type SiteBlocksVideoBlock {
-  title: String
   videoUrl: String
+  backgroundColor: String
+  height: String
+  heightPx: Float
+  overlayColor: String
+  overlayOpacity: Float
+  title: String
+  subtitle: String
+  primaryButton: SiteBlocksBigMediaPrimaryButton
+  secondaryButton: SiteBlocksBigMediaSecondaryButton
   showInNav: Boolean
   navLabel: String
   blockId: String
 }
 
-union SiteBlocks = SiteBlocksHero | SiteBlocksTextSection | SiteBlocksGallery | SiteBlocksBigMedia | SiteBlocksFullWidthImage | SiteBlocksVideoBlock
+type SiteBlocksTestimonialsItems {
+  quote: JSON
+  authorName: String
+  authorTitle: String
+  authorPhoto: String
+  companyLogo: String
+  rating: Float
+}
+
+type SiteBlocksTestimonials {
+  layout: String
+  title: String
+  intro: JSON
+  items: [SiteBlocksTestimonialsItems]
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+type SiteBlocksSignupForm {
+  title: String
+  intro: JSON
+  showNameField: Boolean
+  nameFieldLabel: String
+  emailFieldLabel: String
+  submitLabel: String
+  submitColor: String
+  submitStyle: String
+  successAction: String
+  successMessage: String
+  redirectUrl: String
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+type SiteBlocksStatsItems {
+  number: String
+  label: String
+  mediaType: String
+  icon: String
+  image: String
+}
+
+type SiteBlocksStats {
+  layout: String
+  columns: String
+  title: String
+  intro: JSON
+  items: [SiteBlocksStatsItems]
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+type SiteBlocksHtmlEmbed {
+  title: String
+  intro: JSON
+  width: String
+  heightType: String
+  heightPx: Float
+  html: String
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+type SiteBlocksContactFormSubjectOptions {
+  option: String
+}
+
+type SiteBlocksContactForm {
+  title: String
+  intro: JSON
+  showNameField: Boolean
+  nameRequired: Boolean
+  nameFieldLabel: String
+  emailFieldLabel: String
+  showSubjectField: Boolean
+  subjectRequired: Boolean
+  subjectFieldLabel: String
+  subjectType: String
+  subjectOptions: [SiteBlocksContactFormSubjectOptions]
+  messageFieldLabel: String
+  submitLabel: String
+  submitColor: String
+  submitStyle: String
+  successAction: String
+  successMessage: String
+  redirectUrl: String
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+union SiteBlocks = SiteBlocksHero | SiteBlocksTextSection | SiteBlocksInfoBoxes | SiteBlocksFeatureList | SiteBlocksGallery | SiteBlocksBigMedia | SiteBlocksTestimonials | SiteBlocksSignupForm | SiteBlocksStats | SiteBlocksHtmlEmbed | SiteBlocksContactForm
 
 type Site implements Node & Document {
   title: String!
@@ -173,15 +359,44 @@ input ImageFilter {
   in: [String]
 }
 
+input NumberFilter {
+  lt: Float
+  lte: Float
+  gte: Float
+  gt: Float
+  eq: Float
+  exists: Boolean
+  in: [Float]
+}
+
+input SiteBlocksHeroPrimaryButtonFilter {
+  label: StringFilter
+  url: StringFilter
+}
+
+input SiteBlocksHeroSecondaryButtonFilter {
+  label: StringFilter
+  url: StringFilter
+}
+
 input BooleanFilter {
   eq: Boolean
   exists: Boolean
 }
 
 input SiteBlocksHeroFilter {
+  layout: StringFilter
+  height: StringFilter
+  backgroundType: StringFilter
+  image: ImageFilter
+  videoUrl: StringFilter
+  backgroundColor: StringFilter
+  overlayColor: StringFilter
+  overlayOpacity: NumberFilter
   title: StringFilter
   subtitle: StringFilter
-  image: ImageFilter
+  primaryButton: SiteBlocksHeroPrimaryButtonFilter
+  secondaryButton: SiteBlocksHeroSecondaryButtonFilter
   showInNav: BooleanFilter
   navLabel: StringFilter
   blockId: StringFilter
@@ -193,9 +408,71 @@ input RichTextFilter {
   exists: Boolean
 }
 
+input SiteBlocksTextSectionImagesFilter {
+  src: ImageFilter
+  alt: StringFilter
+}
+
+input SiteBlocksTextSectionPrimaryButtonFilter {
+  label: StringFilter
+  url: StringFilter
+}
+
+input SiteBlocksTextSectionSecondaryButtonFilter {
+  label: StringFilter
+  url: StringFilter
+}
+
 input SiteBlocksTextSectionFilter {
+  layout: StringFilter
   title: StringFilter
+  subtitle: StringFilter
   body: RichTextFilter
+  images: SiteBlocksTextSectionImagesFilter
+  primaryButton: SiteBlocksTextSectionPrimaryButtonFilter
+  secondaryButton: SiteBlocksTextSectionSecondaryButtonFilter
+  showInNav: BooleanFilter
+  navLabel: StringFilter
+  blockId: StringFilter
+}
+
+input SiteBlocksInfoBoxesCardsButtonFilter {
+  label: StringFilter
+  url: StringFilter
+}
+
+input SiteBlocksInfoBoxesCardsFilter {
+  mediaType: StringFilter
+  icon: StringFilter
+  image: ImageFilter
+  title: StringFilter
+  titleLink: StringFilter
+  description: StringFilter
+  button: SiteBlocksInfoBoxesCardsButtonFilter
+}
+
+input SiteBlocksInfoBoxesFilter {
+  title: StringFilter
+  columns: StringFilter
+  cards: SiteBlocksInfoBoxesCardsFilter
+  showInNav: BooleanFilter
+  navLabel: StringFilter
+  blockId: StringFilter
+}
+
+input SiteBlocksFeatureListItemsFilter {
+  mediaType: StringFilter
+  icon: StringFilter
+  image: ImageFilter
+  title: StringFilter
+  description: StringFilter
+}
+
+input SiteBlocksFeatureListFilter {
+  layout: StringFilter
+  title: StringFilter
+  intro: RichTextFilter
+  items: SiteBlocksFeatureListItemsFilter
   showInNav: BooleanFilter
   navLabel: StringFilter
   blockId: StringFilter
@@ -204,36 +481,141 @@ input SiteBlocksTextSectionFilter {
 input SiteBlocksGalleryImagesFilter {
   src: ImageFilter
   alt: StringFilter
+  caption: StringFilter
+  titleOverlay: StringFilter
+  linkUrl: StringFilter
 }
 
 input SiteBlocksGalleryFilter {
   title: StringFilter
+  displayMode: StringFilter
+  columns: StringFilter
+  autoplay: BooleanFilter
+  navigation: StringFilter
   images: SiteBlocksGalleryImagesFilter
   showInNav: BooleanFilter
   navLabel: StringFilter
   blockId: StringFilter
 }
 
+input SiteBlocksBigMediaPrimaryButtonFilter {
+  label: StringFilter
+  url: StringFilter
+}
+
+input SiteBlocksBigMediaSecondaryButtonFilter {
+  label: StringFilter
+  url: StringFilter
+}
+
 input SiteBlocksBigMediaFilter {
-  title: StringFilter
+  mediaType: StringFilter
   image: ImageFilter
-  layout: StringFilter
-  showInNav: BooleanFilter
-  navLabel: StringFilter
-  blockId: StringFilter
-}
-
-input SiteBlocksFullWidthImageFilter {
-  title: StringFilter
-  image: ImageFilter
-  showInNav: BooleanFilter
-  navLabel: StringFilter
-  blockId: StringFilter
-}
-
-input SiteBlocksVideoBlockFilter {
-  title: StringFilter
   videoUrl: StringFilter
+  backgroundColor: StringFilter
+  height: StringFilter
+  heightPx: NumberFilter
+  overlayColor: StringFilter
+  overlayOpacity: NumberFilter
+  title: StringFilter
+  subtitle: StringFilter
+  primaryButton: SiteBlocksBigMediaPrimaryButtonFilter
+  secondaryButton: SiteBlocksBigMediaSecondaryButtonFilter
+  showInNav: BooleanFilter
+  navLabel: StringFilter
+  blockId: StringFilter
+}
+
+input SiteBlocksTestimonialsItemsFilter {
+  quote: RichTextFilter
+  authorName: StringFilter
+  authorTitle: StringFilter
+  authorPhoto: ImageFilter
+  companyLogo: ImageFilter
+  rating: NumberFilter
+}
+
+input SiteBlocksTestimonialsFilter {
+  layout: StringFilter
+  title: StringFilter
+  intro: RichTextFilter
+  items: SiteBlocksTestimonialsItemsFilter
+  showInNav: BooleanFilter
+  navLabel: StringFilter
+  blockId: StringFilter
+}
+
+input SiteBlocksSignupFormFilter {
+  title: StringFilter
+  intro: RichTextFilter
+  showNameField: BooleanFilter
+  nameFieldLabel: StringFilter
+  emailFieldLabel: StringFilter
+  submitLabel: StringFilter
+  submitColor: StringFilter
+  submitStyle: StringFilter
+  successAction: StringFilter
+  successMessage: StringFilter
+  redirectUrl: StringFilter
+  showInNav: BooleanFilter
+  navLabel: StringFilter
+  blockId: StringFilter
+}
+
+input SiteBlocksStatsItemsFilter {
+  number: StringFilter
+  label: StringFilter
+  mediaType: StringFilter
+  icon: StringFilter
+  image: ImageFilter
+}
+
+input SiteBlocksStatsFilter {
+  layout: StringFilter
+  columns: StringFilter
+  title: StringFilter
+  intro: RichTextFilter
+  items: SiteBlocksStatsItemsFilter
+  showInNav: BooleanFilter
+  navLabel: StringFilter
+  blockId: StringFilter
+}
+
+input SiteBlocksHtmlEmbedFilter {
+  title: StringFilter
+  intro: RichTextFilter
+  width: StringFilter
+  heightType: StringFilter
+  heightPx: NumberFilter
+  html: StringFilter
+  showInNav: BooleanFilter
+  navLabel: StringFilter
+  blockId: StringFilter
+}
+
+input SiteBlocksContactFormSubjectOptionsFilter {
+  option: StringFilter
+}
+
+input SiteBlocksContactFormFilter {
+  title: StringFilter
+  intro: RichTextFilter
+  showNameField: BooleanFilter
+  nameRequired: BooleanFilter
+  nameFieldLabel: StringFilter
+  emailFieldLabel: StringFilter
+  showSubjectField: BooleanFilter
+  subjectRequired: BooleanFilter
+  subjectFieldLabel: StringFilter
+  subjectType: StringFilter
+  subjectOptions: SiteBlocksContactFormSubjectOptionsFilter
+  messageFieldLabel: StringFilter
+  submitLabel: StringFilter
+  submitColor: StringFilter
+  submitStyle: StringFilter
+  successAction: StringFilter
+  successMessage: StringFilter
+  redirectUrl: StringFilter
   showInNav: BooleanFilter
   navLabel: StringFilter
   blockId: StringFilter
@@ -242,10 +624,15 @@ input SiteBlocksVideoBlockFilter {
 input SiteBlocksFilter {
   hero: SiteBlocksHeroFilter
   textSection: SiteBlocksTextSectionFilter
+  infoBoxes: SiteBlocksInfoBoxesFilter
+  featureList: SiteBlocksFeatureListFilter
   gallery: SiteBlocksGalleryFilter
   bigMedia: SiteBlocksBigMediaFilter
-  fullWidthImage: SiteBlocksFullWidthImageFilter
-  videoBlock: SiteBlocksVideoBlockFilter
+  testimonials: SiteBlocksTestimonialsFilter
+  signupForm: SiteBlocksSignupFormFilter
+  stats: SiteBlocksStatsFilter
+  htmlEmbed: SiteBlocksHtmlEmbedFilter
+  contactForm: SiteBlocksContactFormFilter
 }
 
 input SiteFilter {
@@ -340,18 +727,99 @@ input DocumentMutation {
   template: TemplateMutation
 }
 
+input SiteBlocksHeroPrimaryButtonMutation {
+  label: String
+  url: String
+}
+
+input SiteBlocksHeroSecondaryButtonMutation {
+  label: String
+  url: String
+}
+
 input SiteBlocksHeroMutation {
+  layout: String
+  height: String
+  backgroundType: String
+  image: String
+  videoUrl: String
+  backgroundColor: String
+  overlayColor: String
+  overlayOpacity: Float
   title: String
   subtitle: String
-  image: String
+  primaryButton: SiteBlocksHeroPrimaryButtonMutation
+  secondaryButton: SiteBlocksHeroSecondaryButtonMutation
   showInNav: Boolean
   navLabel: String
   blockId: String
 }
 
+input SiteBlocksTextSectionImagesMutation {
+  src: String
+  alt: String
+}
+
+input SiteBlocksTextSectionPrimaryButtonMutation {
+  label: String
+  url: String
+}
+
+input SiteBlocksTextSectionSecondaryButtonMutation {
+  label: String
+  url: String
+}
+
 input SiteBlocksTextSectionMutation {
+  layout: String
   title: String
+  subtitle: String
   body: JSON
+  images: [SiteBlocksTextSectionImagesMutation]
+  primaryButton: SiteBlocksTextSectionPrimaryButtonMutation
+  secondaryButton: SiteBlocksTextSectionSecondaryButtonMutation
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+input SiteBlocksInfoBoxesCardsButtonMutation {
+  label: String
+  url: String
+}
+
+input SiteBlocksInfoBoxesCardsMutation {
+  mediaType: String
+  icon: String
+  image: String
+  title: String
+  titleLink: String
+  description: String
+  button: SiteBlocksInfoBoxesCardsButtonMutation
+}
+
+input SiteBlocksInfoBoxesMutation {
+  title: String
+  columns: String
+  cards: [SiteBlocksInfoBoxesCardsMutation]
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+input SiteBlocksFeatureListItemsMutation {
+  mediaType: String
+  icon: String
+  image: String
+  title: String
+  description: String
+}
+
+input SiteBlocksFeatureListMutation {
+  layout: String
+  title: String
+  intro: JSON
+  items: [SiteBlocksFeatureListItemsMutation]
   showInNav: Boolean
   navLabel: String
   blockId: String
@@ -360,36 +828,141 @@ input SiteBlocksTextSectionMutation {
 input SiteBlocksGalleryImagesMutation {
   src: String
   alt: String
+  caption: String
+  titleOverlay: String
+  linkUrl: String
 }
 
 input SiteBlocksGalleryMutation {
   title: String
+  displayMode: String
+  columns: String
+  autoplay: Boolean
+  navigation: String
   images: [SiteBlocksGalleryImagesMutation]
   showInNav: Boolean
   navLabel: String
   blockId: String
 }
 
+input SiteBlocksBigMediaPrimaryButtonMutation {
+  label: String
+  url: String
+}
+
+input SiteBlocksBigMediaSecondaryButtonMutation {
+  label: String
+  url: String
+}
+
 input SiteBlocksBigMediaMutation {
-  title: String
+  mediaType: String
   image: String
-  layout: String
-  showInNav: Boolean
-  navLabel: String
-  blockId: String
-}
-
-input SiteBlocksFullWidthImageMutation {
-  title: String
-  image: String
-  showInNav: Boolean
-  navLabel: String
-  blockId: String
-}
-
-input SiteBlocksVideoBlockMutation {
-  title: String
   videoUrl: String
+  backgroundColor: String
+  height: String
+  heightPx: Float
+  overlayColor: String
+  overlayOpacity: Float
+  title: String
+  subtitle: String
+  primaryButton: SiteBlocksBigMediaPrimaryButtonMutation
+  secondaryButton: SiteBlocksBigMediaSecondaryButtonMutation
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+input SiteBlocksTestimonialsItemsMutation {
+  quote: JSON
+  authorName: String
+  authorTitle: String
+  authorPhoto: String
+  companyLogo: String
+  rating: Float
+}
+
+input SiteBlocksTestimonialsMutation {
+  layout: String
+  title: String
+  intro: JSON
+  items: [SiteBlocksTestimonialsItemsMutation]
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+input SiteBlocksSignupFormMutation {
+  title: String
+  intro: JSON
+  showNameField: Boolean
+  nameFieldLabel: String
+  emailFieldLabel: String
+  submitLabel: String
+  submitColor: String
+  submitStyle: String
+  successAction: String
+  successMessage: String
+  redirectUrl: String
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+input SiteBlocksStatsItemsMutation {
+  number: String
+  label: String
+  mediaType: String
+  icon: String
+  image: String
+}
+
+input SiteBlocksStatsMutation {
+  layout: String
+  columns: String
+  title: String
+  intro: JSON
+  items: [SiteBlocksStatsItemsMutation]
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+input SiteBlocksHtmlEmbedMutation {
+  title: String
+  intro: JSON
+  width: String
+  heightType: String
+  heightPx: Float
+  html: String
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+input SiteBlocksContactFormSubjectOptionsMutation {
+  option: String
+}
+
+input SiteBlocksContactFormMutation {
+  title: String
+  intro: JSON
+  showNameField: Boolean
+  nameRequired: Boolean
+  nameFieldLabel: String
+  emailFieldLabel: String
+  showSubjectField: Boolean
+  subjectRequired: Boolean
+  subjectFieldLabel: String
+  subjectType: String
+  subjectOptions: [SiteBlocksContactFormSubjectOptionsMutation]
+  messageFieldLabel: String
+  submitLabel: String
+  submitColor: String
+  submitStyle: String
+  successAction: String
+  successMessage: String
+  redirectUrl: String
   showInNav: Boolean
   navLabel: String
   blockId: String
@@ -398,10 +971,15 @@ input SiteBlocksVideoBlockMutation {
 input SiteBlocksMutation {
   hero: SiteBlocksHeroMutation
   textSection: SiteBlocksTextSectionMutation
+  infoBoxes: SiteBlocksInfoBoxesMutation
+  featureList: SiteBlocksFeatureListMutation
   gallery: SiteBlocksGalleryMutation
   bigMedia: SiteBlocksBigMediaMutation
-  fullWidthImage: SiteBlocksFullWidthImageMutation
-  videoBlock: SiteBlocksVideoBlockMutation
+  testimonials: SiteBlocksTestimonialsMutation
+  signupForm: SiteBlocksSignupFormMutation
+  stats: SiteBlocksStatsMutation
+  htmlEmbed: SiteBlocksHtmlEmbedMutation
+  contactForm: SiteBlocksContactFormMutation
 }
 
 input SiteMutation {

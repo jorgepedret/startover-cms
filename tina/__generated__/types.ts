@@ -201,20 +201,111 @@ export type CollectionDocumentsArgs = {
 
 export type DocumentNode = Site | Homepage | Template | Folder;
 
+export type SiteBlocksHeroPrimaryButton = {
+  __typename?: 'SiteBlocksHeroPrimaryButton';
+  label?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksHeroSecondaryButton = {
+  __typename?: 'SiteBlocksHeroSecondaryButton';
+  label?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
 export type SiteBlocksHero = {
   __typename?: 'SiteBlocksHero';
+  layout?: Maybe<Scalars['String']['output']>;
+  height?: Maybe<Scalars['String']['output']>;
+  backgroundType?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  videoUrl?: Maybe<Scalars['String']['output']>;
+  backgroundColor?: Maybe<Scalars['String']['output']>;
+  overlayColor?: Maybe<Scalars['String']['output']>;
+  overlayOpacity?: Maybe<Scalars['Float']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   subtitle?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  primaryButton?: Maybe<SiteBlocksHeroPrimaryButton>;
+  secondaryButton?: Maybe<SiteBlocksHeroSecondaryButton>;
   showInNav?: Maybe<Scalars['Boolean']['output']>;
   navLabel?: Maybe<Scalars['String']['output']>;
   blockId?: Maybe<Scalars['String']['output']>;
 };
 
+export type SiteBlocksTextSectionImages = {
+  __typename?: 'SiteBlocksTextSectionImages';
+  src?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksTextSectionPrimaryButton = {
+  __typename?: 'SiteBlocksTextSectionPrimaryButton';
+  label?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksTextSectionSecondaryButton = {
+  __typename?: 'SiteBlocksTextSectionSecondaryButton';
+  label?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
 export type SiteBlocksTextSection = {
   __typename?: 'SiteBlocksTextSection';
+  layout?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
+  images?: Maybe<Array<Maybe<SiteBlocksTextSectionImages>>>;
+  primaryButton?: Maybe<SiteBlocksTextSectionPrimaryButton>;
+  secondaryButton?: Maybe<SiteBlocksTextSectionSecondaryButton>;
+  showInNav?: Maybe<Scalars['Boolean']['output']>;
+  navLabel?: Maybe<Scalars['String']['output']>;
+  blockId?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksInfoBoxesCardsButton = {
+  __typename?: 'SiteBlocksInfoBoxesCardsButton';
+  label?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksInfoBoxesCards = {
+  __typename?: 'SiteBlocksInfoBoxesCards';
+  mediaType?: Maybe<Scalars['String']['output']>;
+  icon?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  titleLink?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  button?: Maybe<SiteBlocksInfoBoxesCardsButton>;
+};
+
+export type SiteBlocksInfoBoxes = {
+  __typename?: 'SiteBlocksInfoBoxes';
+  title?: Maybe<Scalars['String']['output']>;
+  columns?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<SiteBlocksInfoBoxesCards>>>;
+  showInNav?: Maybe<Scalars['Boolean']['output']>;
+  navLabel?: Maybe<Scalars['String']['output']>;
+  blockId?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksFeatureListItems = {
+  __typename?: 'SiteBlocksFeatureListItems';
+  mediaType?: Maybe<Scalars['String']['output']>;
+  icon?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksFeatureList = {
+  __typename?: 'SiteBlocksFeatureList';
+  layout?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
+  items?: Maybe<Array<Maybe<SiteBlocksFeatureListItems>>>;
   showInNav?: Maybe<Scalars['Boolean']['output']>;
   navLabel?: Maybe<Scalars['String']['output']>;
   blockId?: Maybe<Scalars['String']['output']>;
@@ -224,46 +315,159 @@ export type SiteBlocksGalleryImages = {
   __typename?: 'SiteBlocksGalleryImages';
   src?: Maybe<Scalars['String']['output']>;
   alt?: Maybe<Scalars['String']['output']>;
+  caption?: Maybe<Scalars['String']['output']>;
+  titleOverlay?: Maybe<Scalars['String']['output']>;
+  linkUrl?: Maybe<Scalars['String']['output']>;
 };
 
 export type SiteBlocksGallery = {
   __typename?: 'SiteBlocksGallery';
   title?: Maybe<Scalars['String']['output']>;
+  displayMode?: Maybe<Scalars['String']['output']>;
+  columns?: Maybe<Scalars['String']['output']>;
+  autoplay?: Maybe<Scalars['Boolean']['output']>;
+  navigation?: Maybe<Scalars['String']['output']>;
   images?: Maybe<Array<Maybe<SiteBlocksGalleryImages>>>;
   showInNav?: Maybe<Scalars['Boolean']['output']>;
   navLabel?: Maybe<Scalars['String']['output']>;
   blockId?: Maybe<Scalars['String']['output']>;
 };
 
+export type SiteBlocksBigMediaPrimaryButton = {
+  __typename?: 'SiteBlocksBigMediaPrimaryButton';
+  label?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksBigMediaSecondaryButton = {
+  __typename?: 'SiteBlocksBigMediaSecondaryButton';
+  label?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
 export type SiteBlocksBigMedia = {
   __typename?: 'SiteBlocksBigMedia';
-  title?: Maybe<Scalars['String']['output']>;
+  mediaType?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Scalars['String']['output']>;
-  layout?: Maybe<Scalars['String']['output']>;
-  showInNav?: Maybe<Scalars['Boolean']['output']>;
-  navLabel?: Maybe<Scalars['String']['output']>;
-  blockId?: Maybe<Scalars['String']['output']>;
-};
-
-export type SiteBlocksFullWidthImage = {
-  __typename?: 'SiteBlocksFullWidthImage';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  showInNav?: Maybe<Scalars['Boolean']['output']>;
-  navLabel?: Maybe<Scalars['String']['output']>;
-  blockId?: Maybe<Scalars['String']['output']>;
-};
-
-export type SiteBlocksVideoBlock = {
-  __typename?: 'SiteBlocksVideoBlock';
-  title?: Maybe<Scalars['String']['output']>;
   videoUrl?: Maybe<Scalars['String']['output']>;
+  backgroundColor?: Maybe<Scalars['String']['output']>;
+  height?: Maybe<Scalars['String']['output']>;
+  heightPx?: Maybe<Scalars['Float']['output']>;
+  overlayColor?: Maybe<Scalars['String']['output']>;
+  overlayOpacity?: Maybe<Scalars['Float']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  primaryButton?: Maybe<SiteBlocksBigMediaPrimaryButton>;
+  secondaryButton?: Maybe<SiteBlocksBigMediaSecondaryButton>;
   showInNav?: Maybe<Scalars['Boolean']['output']>;
   navLabel?: Maybe<Scalars['String']['output']>;
   blockId?: Maybe<Scalars['String']['output']>;
 };
 
-export type SiteBlocks = SiteBlocksHero | SiteBlocksTextSection | SiteBlocksGallery | SiteBlocksBigMedia | SiteBlocksFullWidthImage | SiteBlocksVideoBlock;
+export type SiteBlocksTestimonialsItems = {
+  __typename?: 'SiteBlocksTestimonialsItems';
+  quote?: Maybe<Scalars['JSON']['output']>;
+  authorName?: Maybe<Scalars['String']['output']>;
+  authorTitle?: Maybe<Scalars['String']['output']>;
+  authorPhoto?: Maybe<Scalars['String']['output']>;
+  companyLogo?: Maybe<Scalars['String']['output']>;
+  rating?: Maybe<Scalars['Float']['output']>;
+};
+
+export type SiteBlocksTestimonials = {
+  __typename?: 'SiteBlocksTestimonials';
+  layout?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
+  items?: Maybe<Array<Maybe<SiteBlocksTestimonialsItems>>>;
+  showInNav?: Maybe<Scalars['Boolean']['output']>;
+  navLabel?: Maybe<Scalars['String']['output']>;
+  blockId?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksSignupForm = {
+  __typename?: 'SiteBlocksSignupForm';
+  title?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
+  showNameField?: Maybe<Scalars['Boolean']['output']>;
+  nameFieldLabel?: Maybe<Scalars['String']['output']>;
+  emailFieldLabel?: Maybe<Scalars['String']['output']>;
+  submitLabel?: Maybe<Scalars['String']['output']>;
+  submitColor?: Maybe<Scalars['String']['output']>;
+  submitStyle?: Maybe<Scalars['String']['output']>;
+  successAction?: Maybe<Scalars['String']['output']>;
+  successMessage?: Maybe<Scalars['String']['output']>;
+  redirectUrl?: Maybe<Scalars['String']['output']>;
+  showInNav?: Maybe<Scalars['Boolean']['output']>;
+  navLabel?: Maybe<Scalars['String']['output']>;
+  blockId?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksStatsItems = {
+  __typename?: 'SiteBlocksStatsItems';
+  number?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  mediaType?: Maybe<Scalars['String']['output']>;
+  icon?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksStats = {
+  __typename?: 'SiteBlocksStats';
+  layout?: Maybe<Scalars['String']['output']>;
+  columns?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
+  items?: Maybe<Array<Maybe<SiteBlocksStatsItems>>>;
+  showInNav?: Maybe<Scalars['Boolean']['output']>;
+  navLabel?: Maybe<Scalars['String']['output']>;
+  blockId?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksHtmlEmbed = {
+  __typename?: 'SiteBlocksHtmlEmbed';
+  title?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
+  width?: Maybe<Scalars['String']['output']>;
+  heightType?: Maybe<Scalars['String']['output']>;
+  heightPx?: Maybe<Scalars['Float']['output']>;
+  html?: Maybe<Scalars['String']['output']>;
+  showInNav?: Maybe<Scalars['Boolean']['output']>;
+  navLabel?: Maybe<Scalars['String']['output']>;
+  blockId?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksContactFormSubjectOptions = {
+  __typename?: 'SiteBlocksContactFormSubjectOptions';
+  option?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocksContactForm = {
+  __typename?: 'SiteBlocksContactForm';
+  title?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
+  showNameField?: Maybe<Scalars['Boolean']['output']>;
+  nameRequired?: Maybe<Scalars['Boolean']['output']>;
+  nameFieldLabel?: Maybe<Scalars['String']['output']>;
+  emailFieldLabel?: Maybe<Scalars['String']['output']>;
+  showSubjectField?: Maybe<Scalars['Boolean']['output']>;
+  subjectRequired?: Maybe<Scalars['Boolean']['output']>;
+  subjectFieldLabel?: Maybe<Scalars['String']['output']>;
+  subjectType?: Maybe<Scalars['String']['output']>;
+  subjectOptions?: Maybe<Array<Maybe<SiteBlocksContactFormSubjectOptions>>>;
+  messageFieldLabel?: Maybe<Scalars['String']['output']>;
+  submitLabel?: Maybe<Scalars['String']['output']>;
+  submitColor?: Maybe<Scalars['String']['output']>;
+  submitStyle?: Maybe<Scalars['String']['output']>;
+  successAction?: Maybe<Scalars['String']['output']>;
+  successMessage?: Maybe<Scalars['String']['output']>;
+  redirectUrl?: Maybe<Scalars['String']['output']>;
+  showInNav?: Maybe<Scalars['Boolean']['output']>;
+  navLabel?: Maybe<Scalars['String']['output']>;
+  blockId?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteBlocks = SiteBlocksHero | SiteBlocksTextSection | SiteBlocksInfoBoxes | SiteBlocksFeatureList | SiteBlocksGallery | SiteBlocksBigMedia | SiteBlocksTestimonials | SiteBlocksSignupForm | SiteBlocksStats | SiteBlocksHtmlEmbed | SiteBlocksContactForm;
 
 export type Site = Node & Document & {
   __typename?: 'Site';
@@ -289,15 +493,44 @@ export type ImageFilter = {
   in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type NumberFilter = {
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+};
+
+export type SiteBlocksHeroPrimaryButtonFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksHeroSecondaryButtonFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
 export type BooleanFilter = {
   eq?: InputMaybe<Scalars['Boolean']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type SiteBlocksHeroFilter = {
+  layout?: InputMaybe<StringFilter>;
+  height?: InputMaybe<StringFilter>;
+  backgroundType?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+  videoUrl?: InputMaybe<StringFilter>;
+  backgroundColor?: InputMaybe<StringFilter>;
+  overlayColor?: InputMaybe<StringFilter>;
+  overlayOpacity?: InputMaybe<NumberFilter>;
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  primaryButton?: InputMaybe<SiteBlocksHeroPrimaryButtonFilter>;
+  secondaryButton?: InputMaybe<SiteBlocksHeroSecondaryButtonFilter>;
   showInNav?: InputMaybe<BooleanFilter>;
   navLabel?: InputMaybe<StringFilter>;
   blockId?: InputMaybe<StringFilter>;
@@ -309,9 +542,71 @@ export type RichTextFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type SiteBlocksTextSectionImagesFilter = {
+  src?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksTextSectionPrimaryButtonFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksTextSectionSecondaryButtonFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
 export type SiteBlocksTextSectionFilter = {
+  layout?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
+  images?: InputMaybe<SiteBlocksTextSectionImagesFilter>;
+  primaryButton?: InputMaybe<SiteBlocksTextSectionPrimaryButtonFilter>;
+  secondaryButton?: InputMaybe<SiteBlocksTextSectionSecondaryButtonFilter>;
+  showInNav?: InputMaybe<BooleanFilter>;
+  navLabel?: InputMaybe<StringFilter>;
+  blockId?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksInfoBoxesCardsButtonFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksInfoBoxesCardsFilter = {
+  mediaType?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+  title?: InputMaybe<StringFilter>;
+  titleLink?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  button?: InputMaybe<SiteBlocksInfoBoxesCardsButtonFilter>;
+};
+
+export type SiteBlocksInfoBoxesFilter = {
+  title?: InputMaybe<StringFilter>;
+  columns?: InputMaybe<StringFilter>;
+  cards?: InputMaybe<SiteBlocksInfoBoxesCardsFilter>;
+  showInNav?: InputMaybe<BooleanFilter>;
+  navLabel?: InputMaybe<StringFilter>;
+  blockId?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksFeatureListItemsFilter = {
+  mediaType?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksFeatureListFilter = {
+  layout?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
+  items?: InputMaybe<SiteBlocksFeatureListItemsFilter>;
   showInNav?: InputMaybe<BooleanFilter>;
   navLabel?: InputMaybe<StringFilter>;
   blockId?: InputMaybe<StringFilter>;
@@ -320,36 +615,141 @@ export type SiteBlocksTextSectionFilter = {
 export type SiteBlocksGalleryImagesFilter = {
   src?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
+  caption?: InputMaybe<StringFilter>;
+  titleOverlay?: InputMaybe<StringFilter>;
+  linkUrl?: InputMaybe<StringFilter>;
 };
 
 export type SiteBlocksGalleryFilter = {
   title?: InputMaybe<StringFilter>;
+  displayMode?: InputMaybe<StringFilter>;
+  columns?: InputMaybe<StringFilter>;
+  autoplay?: InputMaybe<BooleanFilter>;
+  navigation?: InputMaybe<StringFilter>;
   images?: InputMaybe<SiteBlocksGalleryImagesFilter>;
   showInNav?: InputMaybe<BooleanFilter>;
   navLabel?: InputMaybe<StringFilter>;
   blockId?: InputMaybe<StringFilter>;
 };
 
+export type SiteBlocksBigMediaPrimaryButtonFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksBigMediaSecondaryButtonFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
 export type SiteBlocksBigMediaFilter = {
-  title?: InputMaybe<StringFilter>;
+  mediaType?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageFilter>;
-  layout?: InputMaybe<StringFilter>;
-  showInNav?: InputMaybe<BooleanFilter>;
-  navLabel?: InputMaybe<StringFilter>;
-  blockId?: InputMaybe<StringFilter>;
-};
-
-export type SiteBlocksFullWidthImageFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  showInNav?: InputMaybe<BooleanFilter>;
-  navLabel?: InputMaybe<StringFilter>;
-  blockId?: InputMaybe<StringFilter>;
-};
-
-export type SiteBlocksVideoBlockFilter = {
-  title?: InputMaybe<StringFilter>;
   videoUrl?: InputMaybe<StringFilter>;
+  backgroundColor?: InputMaybe<StringFilter>;
+  height?: InputMaybe<StringFilter>;
+  heightPx?: InputMaybe<NumberFilter>;
+  overlayColor?: InputMaybe<StringFilter>;
+  overlayOpacity?: InputMaybe<NumberFilter>;
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  primaryButton?: InputMaybe<SiteBlocksBigMediaPrimaryButtonFilter>;
+  secondaryButton?: InputMaybe<SiteBlocksBigMediaSecondaryButtonFilter>;
+  showInNav?: InputMaybe<BooleanFilter>;
+  navLabel?: InputMaybe<StringFilter>;
+  blockId?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksTestimonialsItemsFilter = {
+  quote?: InputMaybe<RichTextFilter>;
+  authorName?: InputMaybe<StringFilter>;
+  authorTitle?: InputMaybe<StringFilter>;
+  authorPhoto?: InputMaybe<ImageFilter>;
+  companyLogo?: InputMaybe<ImageFilter>;
+  rating?: InputMaybe<NumberFilter>;
+};
+
+export type SiteBlocksTestimonialsFilter = {
+  layout?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
+  items?: InputMaybe<SiteBlocksTestimonialsItemsFilter>;
+  showInNav?: InputMaybe<BooleanFilter>;
+  navLabel?: InputMaybe<StringFilter>;
+  blockId?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksSignupFormFilter = {
+  title?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
+  showNameField?: InputMaybe<BooleanFilter>;
+  nameFieldLabel?: InputMaybe<StringFilter>;
+  emailFieldLabel?: InputMaybe<StringFilter>;
+  submitLabel?: InputMaybe<StringFilter>;
+  submitColor?: InputMaybe<StringFilter>;
+  submitStyle?: InputMaybe<StringFilter>;
+  successAction?: InputMaybe<StringFilter>;
+  successMessage?: InputMaybe<StringFilter>;
+  redirectUrl?: InputMaybe<StringFilter>;
+  showInNav?: InputMaybe<BooleanFilter>;
+  navLabel?: InputMaybe<StringFilter>;
+  blockId?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksStatsItemsFilter = {
+  number?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  mediaType?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+};
+
+export type SiteBlocksStatsFilter = {
+  layout?: InputMaybe<StringFilter>;
+  columns?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
+  items?: InputMaybe<SiteBlocksStatsItemsFilter>;
+  showInNav?: InputMaybe<BooleanFilter>;
+  navLabel?: InputMaybe<StringFilter>;
+  blockId?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksHtmlEmbedFilter = {
+  title?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
+  width?: InputMaybe<StringFilter>;
+  heightType?: InputMaybe<StringFilter>;
+  heightPx?: InputMaybe<NumberFilter>;
+  html?: InputMaybe<StringFilter>;
+  showInNav?: InputMaybe<BooleanFilter>;
+  navLabel?: InputMaybe<StringFilter>;
+  blockId?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksContactFormSubjectOptionsFilter = {
+  option?: InputMaybe<StringFilter>;
+};
+
+export type SiteBlocksContactFormFilter = {
+  title?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
+  showNameField?: InputMaybe<BooleanFilter>;
+  nameRequired?: InputMaybe<BooleanFilter>;
+  nameFieldLabel?: InputMaybe<StringFilter>;
+  emailFieldLabel?: InputMaybe<StringFilter>;
+  showSubjectField?: InputMaybe<BooleanFilter>;
+  subjectRequired?: InputMaybe<BooleanFilter>;
+  subjectFieldLabel?: InputMaybe<StringFilter>;
+  subjectType?: InputMaybe<StringFilter>;
+  subjectOptions?: InputMaybe<SiteBlocksContactFormSubjectOptionsFilter>;
+  messageFieldLabel?: InputMaybe<StringFilter>;
+  submitLabel?: InputMaybe<StringFilter>;
+  submitColor?: InputMaybe<StringFilter>;
+  submitStyle?: InputMaybe<StringFilter>;
+  successAction?: InputMaybe<StringFilter>;
+  successMessage?: InputMaybe<StringFilter>;
+  redirectUrl?: InputMaybe<StringFilter>;
   showInNav?: InputMaybe<BooleanFilter>;
   navLabel?: InputMaybe<StringFilter>;
   blockId?: InputMaybe<StringFilter>;
@@ -358,10 +758,15 @@ export type SiteBlocksVideoBlockFilter = {
 export type SiteBlocksFilter = {
   hero?: InputMaybe<SiteBlocksHeroFilter>;
   textSection?: InputMaybe<SiteBlocksTextSectionFilter>;
+  infoBoxes?: InputMaybe<SiteBlocksInfoBoxesFilter>;
+  featureList?: InputMaybe<SiteBlocksFeatureListFilter>;
   gallery?: InputMaybe<SiteBlocksGalleryFilter>;
   bigMedia?: InputMaybe<SiteBlocksBigMediaFilter>;
-  fullWidthImage?: InputMaybe<SiteBlocksFullWidthImageFilter>;
-  videoBlock?: InputMaybe<SiteBlocksVideoBlockFilter>;
+  testimonials?: InputMaybe<SiteBlocksTestimonialsFilter>;
+  signupForm?: InputMaybe<SiteBlocksSignupFormFilter>;
+  stats?: InputMaybe<SiteBlocksStatsFilter>;
+  htmlEmbed?: InputMaybe<SiteBlocksHtmlEmbedFilter>;
+  contactForm?: InputMaybe<SiteBlocksContactFormFilter>;
 };
 
 export type SiteFilter = {
@@ -534,18 +939,99 @@ export type DocumentMutation = {
   template?: InputMaybe<TemplateMutation>;
 };
 
+export type SiteBlocksHeroPrimaryButtonMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksHeroSecondaryButtonMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type SiteBlocksHeroMutation = {
+  layout?: InputMaybe<Scalars['String']['input']>;
+  height?: InputMaybe<Scalars['String']['input']>;
+  backgroundType?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  videoUrl?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor?: InputMaybe<Scalars['String']['input']>;
+  overlayColor?: InputMaybe<Scalars['String']['input']>;
+  overlayOpacity?: InputMaybe<Scalars['Float']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  primaryButton?: InputMaybe<SiteBlocksHeroPrimaryButtonMutation>;
+  secondaryButton?: InputMaybe<SiteBlocksHeroSecondaryButtonMutation>;
   showInNav?: InputMaybe<Scalars['Boolean']['input']>;
   navLabel?: InputMaybe<Scalars['String']['input']>;
   blockId?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type SiteBlocksTextSectionImagesMutation = {
+  src?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksTextSectionPrimaryButtonMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksTextSectionSecondaryButtonMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type SiteBlocksTextSectionMutation = {
+  layout?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
+  images?: InputMaybe<Array<InputMaybe<SiteBlocksTextSectionImagesMutation>>>;
+  primaryButton?: InputMaybe<SiteBlocksTextSectionPrimaryButtonMutation>;
+  secondaryButton?: InputMaybe<SiteBlocksTextSectionSecondaryButtonMutation>;
+  showInNav?: InputMaybe<Scalars['Boolean']['input']>;
+  navLabel?: InputMaybe<Scalars['String']['input']>;
+  blockId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksInfoBoxesCardsButtonMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksInfoBoxesCardsMutation = {
+  mediaType?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  titleLink?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  button?: InputMaybe<SiteBlocksInfoBoxesCardsButtonMutation>;
+};
+
+export type SiteBlocksInfoBoxesMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  columns?: InputMaybe<Scalars['String']['input']>;
+  cards?: InputMaybe<Array<InputMaybe<SiteBlocksInfoBoxesCardsMutation>>>;
+  showInNav?: InputMaybe<Scalars['Boolean']['input']>;
+  navLabel?: InputMaybe<Scalars['String']['input']>;
+  blockId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksFeatureListItemsMutation = {
+  mediaType?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksFeatureListMutation = {
+  layout?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SiteBlocksFeatureListItemsMutation>>>;
   showInNav?: InputMaybe<Scalars['Boolean']['input']>;
   navLabel?: InputMaybe<Scalars['String']['input']>;
   blockId?: InputMaybe<Scalars['String']['input']>;
@@ -554,36 +1040,141 @@ export type SiteBlocksTextSectionMutation = {
 export type SiteBlocksGalleryImagesMutation = {
   src?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+  titleOverlay?: InputMaybe<Scalars['String']['input']>;
+  linkUrl?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SiteBlocksGalleryMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
+  displayMode?: InputMaybe<Scalars['String']['input']>;
+  columns?: InputMaybe<Scalars['String']['input']>;
+  autoplay?: InputMaybe<Scalars['Boolean']['input']>;
+  navigation?: InputMaybe<Scalars['String']['input']>;
   images?: InputMaybe<Array<InputMaybe<SiteBlocksGalleryImagesMutation>>>;
   showInNav?: InputMaybe<Scalars['Boolean']['input']>;
   navLabel?: InputMaybe<Scalars['String']['input']>;
   blockId?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type SiteBlocksBigMediaPrimaryButtonMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksBigMediaSecondaryButtonMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type SiteBlocksBigMediaMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
+  mediaType?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
-  layout?: InputMaybe<Scalars['String']['input']>;
-  showInNav?: InputMaybe<Scalars['Boolean']['input']>;
-  navLabel?: InputMaybe<Scalars['String']['input']>;
-  blockId?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SiteBlocksFullWidthImageMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  showInNav?: InputMaybe<Scalars['Boolean']['input']>;
-  navLabel?: InputMaybe<Scalars['String']['input']>;
-  blockId?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SiteBlocksVideoBlockMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
   videoUrl?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor?: InputMaybe<Scalars['String']['input']>;
+  height?: InputMaybe<Scalars['String']['input']>;
+  heightPx?: InputMaybe<Scalars['Float']['input']>;
+  overlayColor?: InputMaybe<Scalars['String']['input']>;
+  overlayOpacity?: InputMaybe<Scalars['Float']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  primaryButton?: InputMaybe<SiteBlocksBigMediaPrimaryButtonMutation>;
+  secondaryButton?: InputMaybe<SiteBlocksBigMediaSecondaryButtonMutation>;
+  showInNav?: InputMaybe<Scalars['Boolean']['input']>;
+  navLabel?: InputMaybe<Scalars['String']['input']>;
+  blockId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksTestimonialsItemsMutation = {
+  quote?: InputMaybe<Scalars['JSON']['input']>;
+  authorName?: InputMaybe<Scalars['String']['input']>;
+  authorTitle?: InputMaybe<Scalars['String']['input']>;
+  authorPhoto?: InputMaybe<Scalars['String']['input']>;
+  companyLogo?: InputMaybe<Scalars['String']['input']>;
+  rating?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type SiteBlocksTestimonialsMutation = {
+  layout?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SiteBlocksTestimonialsItemsMutation>>>;
+  showInNav?: InputMaybe<Scalars['Boolean']['input']>;
+  navLabel?: InputMaybe<Scalars['String']['input']>;
+  blockId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksSignupFormMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
+  showNameField?: InputMaybe<Scalars['Boolean']['input']>;
+  nameFieldLabel?: InputMaybe<Scalars['String']['input']>;
+  emailFieldLabel?: InputMaybe<Scalars['String']['input']>;
+  submitLabel?: InputMaybe<Scalars['String']['input']>;
+  submitColor?: InputMaybe<Scalars['String']['input']>;
+  submitStyle?: InputMaybe<Scalars['String']['input']>;
+  successAction?: InputMaybe<Scalars['String']['input']>;
+  successMessage?: InputMaybe<Scalars['String']['input']>;
+  redirectUrl?: InputMaybe<Scalars['String']['input']>;
+  showInNav?: InputMaybe<Scalars['Boolean']['input']>;
+  navLabel?: InputMaybe<Scalars['String']['input']>;
+  blockId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksStatsItemsMutation = {
+  number?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  mediaType?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksStatsMutation = {
+  layout?: InputMaybe<Scalars['String']['input']>;
+  columns?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SiteBlocksStatsItemsMutation>>>;
+  showInNav?: InputMaybe<Scalars['Boolean']['input']>;
+  navLabel?: InputMaybe<Scalars['String']['input']>;
+  blockId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksHtmlEmbedMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
+  width?: InputMaybe<Scalars['String']['input']>;
+  heightType?: InputMaybe<Scalars['String']['input']>;
+  heightPx?: InputMaybe<Scalars['Float']['input']>;
+  html?: InputMaybe<Scalars['String']['input']>;
+  showInNav?: InputMaybe<Scalars['Boolean']['input']>;
+  navLabel?: InputMaybe<Scalars['String']['input']>;
+  blockId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksContactFormSubjectOptionsMutation = {
+  option?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksContactFormMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
+  showNameField?: InputMaybe<Scalars['Boolean']['input']>;
+  nameRequired?: InputMaybe<Scalars['Boolean']['input']>;
+  nameFieldLabel?: InputMaybe<Scalars['String']['input']>;
+  emailFieldLabel?: InputMaybe<Scalars['String']['input']>;
+  showSubjectField?: InputMaybe<Scalars['Boolean']['input']>;
+  subjectRequired?: InputMaybe<Scalars['Boolean']['input']>;
+  subjectFieldLabel?: InputMaybe<Scalars['String']['input']>;
+  subjectType?: InputMaybe<Scalars['String']['input']>;
+  subjectOptions?: InputMaybe<Array<InputMaybe<SiteBlocksContactFormSubjectOptionsMutation>>>;
+  messageFieldLabel?: InputMaybe<Scalars['String']['input']>;
+  submitLabel?: InputMaybe<Scalars['String']['input']>;
+  submitColor?: InputMaybe<Scalars['String']['input']>;
+  submitStyle?: InputMaybe<Scalars['String']['input']>;
+  successAction?: InputMaybe<Scalars['String']['input']>;
+  successMessage?: InputMaybe<Scalars['String']['input']>;
+  redirectUrl?: InputMaybe<Scalars['String']['input']>;
   showInNav?: InputMaybe<Scalars['Boolean']['input']>;
   navLabel?: InputMaybe<Scalars['String']['input']>;
   blockId?: InputMaybe<Scalars['String']['input']>;
@@ -592,10 +1183,15 @@ export type SiteBlocksVideoBlockMutation = {
 export type SiteBlocksMutation = {
   hero?: InputMaybe<SiteBlocksHeroMutation>;
   textSection?: InputMaybe<SiteBlocksTextSectionMutation>;
+  infoBoxes?: InputMaybe<SiteBlocksInfoBoxesMutation>;
+  featureList?: InputMaybe<SiteBlocksFeatureListMutation>;
   gallery?: InputMaybe<SiteBlocksGalleryMutation>;
   bigMedia?: InputMaybe<SiteBlocksBigMediaMutation>;
-  fullWidthImage?: InputMaybe<SiteBlocksFullWidthImageMutation>;
-  videoBlock?: InputMaybe<SiteBlocksVideoBlockMutation>;
+  testimonials?: InputMaybe<SiteBlocksTestimonialsMutation>;
+  signupForm?: InputMaybe<SiteBlocksSignupFormMutation>;
+  stats?: InputMaybe<SiteBlocksStatsMutation>;
+  htmlEmbed?: InputMaybe<SiteBlocksHtmlEmbedMutation>;
+  contactForm?: InputMaybe<SiteBlocksContactFormMutation>;
 };
 
 export type SiteMutation = {
@@ -614,7 +1210,7 @@ export type TemplateMutation = {
   description?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type SitePartsFragment = { __typename: 'Site', title: string, slug?: string | null, blocks?: Array<{ __typename: 'SiteBlocksHero', title?: string | null, subtitle?: string | null, image?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksTextSection', title?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksGallery', title?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', title?: string | null, image?: string | null, layout?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksFullWidthImage', title?: string | null, image?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksVideoBlock', title?: string | null, videoUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | null> | null };
+export type SitePartsFragment = { __typename: 'Site', title: string, slug?: string | null, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | null> | null };
 
 export type HomepagePartsFragment = { __typename: 'Homepage', title?: string | null, subtitle?: string | null };
 
@@ -625,7 +1221,7 @@ export type SiteQueryVariables = Exact<{
 }>;
 
 
-export type SiteQuery = { __typename?: 'Query', site: { __typename: 'Site', id: string, title: string, slug?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'SiteBlocksHero', title?: string | null, subtitle?: string | null, image?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksTextSection', title?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksGallery', title?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', title?: string | null, image?: string | null, layout?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksFullWidthImage', title?: string | null, image?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksVideoBlock', title?: string | null, videoUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | null> | null } };
+export type SiteQuery = { __typename?: 'Query', site: { __typename: 'Site', id: string, title: string, slug?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | null> | null } };
 
 export type SiteConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -637,7 +1233,7 @@ export type SiteConnectionQueryVariables = Exact<{
 }>;
 
 
-export type SiteConnectionQuery = { __typename?: 'Query', siteConnection: { __typename?: 'SiteConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SiteConnectionEdges', cursor: string, node?: { __typename: 'Site', id: string, title: string, slug?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'SiteBlocksHero', title?: string | null, subtitle?: string | null, image?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksTextSection', title?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksGallery', title?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', title?: string | null, image?: string | null, layout?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksFullWidthImage', title?: string | null, image?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksVideoBlock', title?: string | null, videoUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | null> | null } | null } | null> | null } };
+export type SiteConnectionQuery = { __typename?: 'Query', siteConnection: { __typename?: 'SiteConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SiteConnectionEdges', cursor: string, node?: { __typename: 'Site', id: string, title: string, slug?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export type HomepageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -685,49 +1281,217 @@ export const SitePartsFragmentDoc = gql`
   blocks {
     __typename
     ... on SiteBlocksHero {
+      layout
+      height
+      backgroundType
+      image
+      videoUrl
+      backgroundColor
+      overlayColor
+      overlayOpacity
       title
       subtitle
-      image
+      primaryButton {
+        __typename
+        label
+        url
+      }
+      secondaryButton {
+        __typename
+        label
+        url
+      }
       showInNav
       navLabel
       blockId
     }
     ... on SiteBlocksTextSection {
+      layout
       title
+      subtitle
       body
+      images {
+        __typename
+        src
+        alt
+      }
+      primaryButton {
+        __typename
+        label
+        url
+      }
+      secondaryButton {
+        __typename
+        label
+        url
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksInfoBoxes {
+      title
+      columns
+      cards {
+        __typename
+        mediaType
+        icon
+        image
+        title
+        titleLink
+        description
+        button {
+          __typename
+          label
+          url
+        }
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksFeatureList {
+      layout
+      title
+      intro
+      items {
+        __typename
+        mediaType
+        icon
+        image
+        title
+        description
+      }
       showInNav
       navLabel
       blockId
     }
     ... on SiteBlocksGallery {
       title
+      displayMode
+      columns
+      autoplay
+      navigation
       images {
         __typename
         src
         alt
+        caption
+        titleOverlay
+        linkUrl
       }
       showInNav
       navLabel
       blockId
     }
     ... on SiteBlocksBigMedia {
-      title
+      mediaType
       image
-      layout
-      showInNav
-      navLabel
-      blockId
-    }
-    ... on SiteBlocksFullWidthImage {
-      title
-      image
-      showInNav
-      navLabel
-      blockId
-    }
-    ... on SiteBlocksVideoBlock {
-      title
       videoUrl
+      backgroundColor
+      height
+      heightPx
+      overlayColor
+      overlayOpacity
+      title
+      subtitle
+      primaryButton {
+        __typename
+        label
+        url
+      }
+      secondaryButton {
+        __typename
+        label
+        url
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksTestimonials {
+      layout
+      title
+      intro
+      items {
+        __typename
+        quote
+        authorName
+        authorTitle
+        authorPhoto
+        companyLogo
+        rating
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksSignupForm {
+      title
+      intro
+      showNameField
+      nameFieldLabel
+      emailFieldLabel
+      submitLabel
+      submitColor
+      submitStyle
+      successAction
+      successMessage
+      redirectUrl
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksStats {
+      layout
+      columns
+      title
+      intro
+      items {
+        __typename
+        number
+        label
+        mediaType
+        icon
+        image
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksHtmlEmbed {
+      title
+      intro
+      width
+      heightType
+      heightPx
+      html
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksContactForm {
+      title
+      intro
+      showNameField
+      nameRequired
+      nameFieldLabel
+      emailFieldLabel
+      showSubjectField
+      subjectRequired
+      subjectFieldLabel
+      subjectType
+      subjectOptions {
+        __typename
+        option
+      }
+      messageFieldLabel
+      submitLabel
+      submitColor
+      submitStyle
+      successAction
+      successMessage
+      redirectUrl
       showInNav
       navLabel
       blockId

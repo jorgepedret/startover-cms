@@ -5,49 +5,217 @@ fragment SiteParts on Site {
   blocks {
     __typename
     ... on SiteBlocksHero {
+      layout
+      height
+      backgroundType
+      image
+      videoUrl
+      backgroundColor
+      overlayColor
+      overlayOpacity
       title
       subtitle
-      image
+      primaryButton {
+        __typename
+        label
+        url
+      }
+      secondaryButton {
+        __typename
+        label
+        url
+      }
       showInNav
       navLabel
       blockId
     }
     ... on SiteBlocksTextSection {
+      layout
       title
+      subtitle
       body
+      images {
+        __typename
+        src
+        alt
+      }
+      primaryButton {
+        __typename
+        label
+        url
+      }
+      secondaryButton {
+        __typename
+        label
+        url
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksInfoBoxes {
+      title
+      columns
+      cards {
+        __typename
+        mediaType
+        icon
+        image
+        title
+        titleLink
+        description
+        button {
+          __typename
+          label
+          url
+        }
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksFeatureList {
+      layout
+      title
+      intro
+      items {
+        __typename
+        mediaType
+        icon
+        image
+        title
+        description
+      }
       showInNav
       navLabel
       blockId
     }
     ... on SiteBlocksGallery {
       title
+      displayMode
+      columns
+      autoplay
+      navigation
       images {
         __typename
         src
         alt
+        caption
+        titleOverlay
+        linkUrl
       }
       showInNav
       navLabel
       blockId
     }
     ... on SiteBlocksBigMedia {
-      title
+      mediaType
       image
-      layout
-      showInNav
-      navLabel
-      blockId
-    }
-    ... on SiteBlocksFullWidthImage {
-      title
-      image
-      showInNav
-      navLabel
-      blockId
-    }
-    ... on SiteBlocksVideoBlock {
-      title
       videoUrl
+      backgroundColor
+      height
+      heightPx
+      overlayColor
+      overlayOpacity
+      title
+      subtitle
+      primaryButton {
+        __typename
+        label
+        url
+      }
+      secondaryButton {
+        __typename
+        label
+        url
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksTestimonials {
+      layout
+      title
+      intro
+      items {
+        __typename
+        quote
+        authorName
+        authorTitle
+        authorPhoto
+        companyLogo
+        rating
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksSignupForm {
+      title
+      intro
+      showNameField
+      nameFieldLabel
+      emailFieldLabel
+      submitLabel
+      submitColor
+      submitStyle
+      successAction
+      successMessage
+      redirectUrl
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksStats {
+      layout
+      columns
+      title
+      intro
+      items {
+        __typename
+        number
+        label
+        mediaType
+        icon
+        image
+      }
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksHtmlEmbed {
+      title
+      intro
+      width
+      heightType
+      heightPx
+      html
+      showInNav
+      navLabel
+      blockId
+    }
+    ... on SiteBlocksContactForm {
+      title
+      intro
+      showNameField
+      nameRequired
+      nameFieldLabel
+      emailFieldLabel
+      showSubjectField
+      subjectRequired
+      subjectFieldLabel
+      subjectType
+      subjectOptions {
+        __typename
+        option
+      }
+      messageFieldLabel
+      submitLabel
+      submitColor
+      submitStyle
+      successAction
+      successMessage
+      redirectUrl
       showInNav
       navLabel
       blockId

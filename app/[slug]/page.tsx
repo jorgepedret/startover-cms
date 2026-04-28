@@ -5,34 +5,49 @@ import Link from 'next/link';
 import { useTina, tinaField } from 'tinacms/dist/react';
 import { client } from '@/tina/__generated__/client';
 import { useIsEditor } from '@/hooks/useIsEditor';
-import Hero from '@/components/blocks/Hero';
-import TextSection from '@/components/blocks/TextSection';
-import Gallery from '@/components/blocks/Gallery';
-import BigMedia from '@/components/blocks/BigMedia';
-import FullWidthImage from '@/components/blocks/FullWidthImage';
-import VideoBlock from '@/components/blocks/VideoBlock';
-import NavBar from '@/components/blocks/NavBar';
+
+import NavBar       from '@/components/blocks/NavBar';
+import Hero         from '@/components/blocks/Hero';
+import TextSection  from '@/components/blocks/TextSection';
+import InfoBoxes    from '@/components/blocks/InfoBoxes';
+import FeatureList  from '@/components/blocks/FeatureList';
+import Gallery      from '@/components/blocks/Gallery';
+import BigMedia     from '@/components/blocks/BigMedia';
+import Testimonials from '@/components/blocks/Testimonials';
+import SignupForm   from '@/components/blocks/SignupForm';
+import Stats        from '@/components/blocks/Stats';
+import HtmlEmbed    from '@/components/blocks/HtmlEmbed';
+import ContactForm  from '@/components/blocks/ContactForm';
 
 type SiteQueryResult = Awaited<ReturnType<typeof client.queries.site>>;
-type AnyBlock = { blockId?: string | null; showInNav?: boolean | null; navLabel?: string | null; title?: string | null };
+
+// Minimal shape used only for nav-building — all blocks have these fields
+type AnyBlock = {
+  blockId?:    string | null;
+  showInNav?:  boolean | null;
+  navLabel?:   string | null;
+  title?:      string | null;
+};
 
 function toId(block: AnyBlock, i: number): string {
   if (block.blockId) return block.blockId;
-  if (block.title) return block.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  if (block.title)   return block.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   return `block-${i}`;
 }
 
 function buildNavItems(blocks: (AnyBlock | null)[]): { label: string; target: string }[] {
   return blocks.flatMap((block, i) => {
-    if (!block || !block.showInNav) return [];
+    if (!block?.showInNav) return [];
     return [{ label: block.navLabel || block.title || `Section ${i + 1}`, target: toId(block, i) }];
   });
 }
 
 function SiteContent({ result, slug }: { result: SiteQueryResult; slug: string }) {
   const { data } = useTina(result);
-  const site = data.site;
-  const navItems = buildNavItems((site.blocks ?? []) as AnyBlock[]);
+  const site     = data.site;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const blocks   = (site.blocks ?? []) as any[];
+  const navItems = buildNavItems(blocks as AnyBlock[]);
   const isEditor = useIsEditor();
 
   return (
@@ -48,61 +63,195 @@ function SiteContent({ result, slug }: { result: SiteQueryResult; slug: string }
           Edit page
         </a>
       )}
+
       <NavBar items={navItems} />
+
       <main>
-        {site.blocks?.map((block, i) => {
+        {blocks.map((block, i) => {
           if (!block) return null;
           const id = toId(block as AnyBlock, i);
+          const wrap = (children: React.ReactNode) => (
+            <div key={i} id={id} data-tina-field={tinaField(block)}>{children}</div>
+          );
 
           switch (block.__typename) {
+
             case 'SiteBlocksHero':
-              return (
-                <div key={i} id={id} data-tina-field={tinaField(block)}>
-                  <Hero title={block.title ?? ''} subtitle={block.subtitle ?? ''} image={block.image ?? ''}
-                    titleField={tinaField(block, 'title')}
-                    subtitleField={tinaField(block, 'subtitle')}
-                    imageField={tinaField(block, 'image')} />
-                </div>
+              return wrap(
+                <Hero
+                  layout={block.layout}
+                  height={block.height}
+                  backgroundType={block.backgroundType}
+                  image={block.image}
+                  videoUrl={block.videoUrl}
+                  backgroundColor={block.backgroundColor}
+                  overlayColor={block.overlayColor}
+                  overlayOpacity={block.overlayOpacity}
+                  title={block.title}
+                  subtitle={block.subtitle}
+                  primaryButton={block.primaryButton}
+                  secondaryButton={block.secondaryButton}
+                  titleField={tinaField(block, 'title')}
+                  subtitleField={tinaField(block, 'subtitle')}
+                  imageField={tinaField(block, 'image')}
+                />
               );
+
             case 'SiteBlocksTextSection':
-              return (
-                <div key={i} id={id} data-tina-field={tinaField(block)}>
-                  <TextSection title={block.title ?? ''} body={block.body}
-                    titleField={tinaField(block, 'title')}
-                    bodyField={tinaField(block, 'body')} />
-                </div>
+              return wrap(
+                <TextSection
+                  layout={block.layout}
+                  title={block.title}
+                  subtitle={block.subtitle}
+                  body={block.body}
+                  images={block.images}
+                  primaryButton={block.primaryButton}
+                  secondaryButton={block.secondaryButton}
+                  titleField={tinaField(block, 'title')}
+                  subtitleField={tinaField(block, 'subtitle')}
+                  bodyField={tinaField(block, 'body')}
+                />
               );
+
+            case 'SiteBlocksInfoBoxes':
+              return wrap(
+                <InfoBoxes
+                  title={block.title}
+                  columns={block.columns}
+                  cards={block.cards}
+                  titleField={tinaField(block, 'title')}
+                />
+              );
+
+            case 'SiteBlocksFeatureList':
+              return wrap(
+                <FeatureList
+                  layout={block.layout}
+                  title={block.title}
+                  intro={block.intro}
+                  items={block.items}
+                  titleField={tinaField(block, 'title')}
+                  introField={tinaField(block, 'intro')}
+                />
+              );
+
             case 'SiteBlocksGallery':
-              return (
-                <div key={i} id={id} data-tina-field={tinaField(block)}>
-                  <Gallery title={block.title ?? ''} images={block.images?.map(img => ({ src: img?.src ?? '', alt: img?.alt ?? '' })) ?? []}
-                    titleField={tinaField(block, 'title')} />
-                </div>
+              return wrap(
+                <Gallery
+                  title={block.title}
+                  displayMode={block.displayMode}
+                  columns={block.columns}
+                  autoplay={block.autoplay}
+                  navigation={block.navigation}
+                  images={block.images}
+                  titleField={tinaField(block, 'title')}
+                />
               );
+
             case 'SiteBlocksBigMedia':
-              return (
-                <div key={i} id={id} data-tina-field={tinaField(block)}>
-                  <BigMedia title={block.title ?? ''} image={block.image ?? ''} layout={block.layout ?? 'center'}
-                    titleField={tinaField(block, 'title')}
-                    imageField={tinaField(block, 'image')} />
-                </div>
+              return wrap(
+                <BigMedia
+                  mediaType={block.mediaType}
+                  image={block.image}
+                  videoUrl={block.videoUrl}
+                  backgroundColor={block.backgroundColor}
+                  height={block.height}
+                  heightPx={block.heightPx}
+                  overlayColor={block.overlayColor}
+                  overlayOpacity={block.overlayOpacity}
+                  title={block.title}
+                  subtitle={block.subtitle}
+                  primaryButton={block.primaryButton}
+                  secondaryButton={block.secondaryButton}
+                  titleField={tinaField(block, 'title')}
+                  imageField={tinaField(block, 'image')}
+                />
               );
-            case 'SiteBlocksFullWidthImage':
-              return (
-                <div key={i} id={id} data-tina-field={tinaField(block)}>
-                  <FullWidthImage title={block.title ?? ''} image={block.image ?? ''}
-                    titleField={tinaField(block, 'title')}
-                    imageField={tinaField(block, 'image')} />
-                </div>
+
+            case 'SiteBlocksTestimonials':
+              return wrap(
+                <Testimonials
+                  layout={block.layout}
+                  title={block.title}
+                  intro={block.intro}
+                  items={block.items}
+                  titleField={tinaField(block, 'title')}
+                  introField={tinaField(block, 'intro')}
+                />
               );
-            case 'SiteBlocksVideoBlock':
-              return (
-                <div key={i} id={id} data-tina-field={tinaField(block)}>
-                  <VideoBlock title={block.title ?? ''} videoUrl={block.videoUrl ?? ''}
-                    titleField={tinaField(block, 'title')}
-                    videoUrlField={tinaField(block, 'videoUrl')} />
-                </div>
+
+            case 'SiteBlocksSignupForm':
+              return wrap(
+                <SignupForm
+                  title={block.title}
+                  intro={block.intro}
+                  showNameField={block.showNameField}
+                  nameFieldLabel={block.nameFieldLabel}
+                  emailFieldLabel={block.emailFieldLabel}
+                  submitLabel={block.submitLabel}
+                  submitColor={block.submitColor}
+                  submitStyle={block.submitStyle}
+                  successAction={block.successAction}
+                  successMessage={block.successMessage}
+                  redirectUrl={block.redirectUrl}
+                  titleField={tinaField(block, 'title')}
+                  introField={tinaField(block, 'intro')}
+                />
               );
+
+            case 'SiteBlocksStats':
+              return wrap(
+                <Stats
+                  layout={block.layout}
+                  columns={block.columns}
+                  title={block.title}
+                  intro={block.intro}
+                  items={block.items}
+                  titleField={tinaField(block, 'title')}
+                  introField={tinaField(block, 'intro')}
+                />
+              );
+
+            case 'SiteBlocksHtmlEmbed':
+              return wrap(
+                <HtmlEmbed
+                  title={block.title}
+                  intro={block.intro}
+                  width={block.width}
+                  heightType={block.heightType}
+                  heightPx={block.heightPx}
+                  html={block.html}
+                  titleField={tinaField(block, 'title')}
+                  introField={tinaField(block, 'intro')}
+                />
+              );
+
+            case 'SiteBlocksContactForm':
+              return wrap(
+                <ContactForm
+                  title={block.title}
+                  intro={block.intro}
+                  showNameField={block.showNameField}
+                  nameRequired={block.nameRequired}
+                  nameFieldLabel={block.nameFieldLabel}
+                  emailFieldLabel={block.emailFieldLabel}
+                  showSubjectField={block.showSubjectField}
+                  subjectRequired={block.subjectRequired}
+                  subjectFieldLabel={block.subjectFieldLabel}
+                  subjectType={block.subjectType}
+                  subjectOptions={block.subjectOptions}
+                  messageFieldLabel={block.messageFieldLabel}
+                  submitLabel={block.submitLabel}
+                  submitColor={block.submitColor}
+                  submitStyle={block.submitStyle}
+                  successAction={block.successAction}
+                  successMessage={block.successMessage}
+                  redirectUrl={block.redirectUrl}
+                  titleField={tinaField(block, 'title')}
+                  introField={tinaField(block, 'intro')}
+                />
+              );
+
             default:
               return null;
           }
@@ -114,7 +263,7 @@ function SiteContent({ result, slug }: { result: SiteQueryResult; slug: string }
 
 export default function SitePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
-  const [result, setResult] = useState<SiteQueryResult | null>(null);
+  const [result,   setResult]   = useState<SiteQueryResult | null>(null);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
@@ -123,24 +272,20 @@ export default function SitePage({ params }: { params: Promise<{ slug: string }>
       .catch(() => setNotFound(true));
   }, [slug]);
 
-  if (notFound) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-slate-900 mb-4">Site Not Found</h1>
-          <Link href="/" className="text-blue-600 hover:underline">← Back to sites</Link>
-        </div>
+  if (notFound) return (
+    <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold text-slate-900 mb-4">Site Not Found</h1>
+        <Link href="/" className="text-blue-600 hover:underline">← Back to sites</Link>
       </div>
-    );
-  }
+    </div>
+  );
 
-  if (!result) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <p className="text-slate-500">Loading…</p>
-      </div>
-    );
-  }
+  if (!result) return (
+    <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <p className="text-slate-500">Loading…</p>
+    </div>
+  );
 
   return <SiteContent result={result} slug={slug} />;
 }
