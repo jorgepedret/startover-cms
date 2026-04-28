@@ -2,9 +2,18 @@
 title: Your Balls
 slug: yourballs
 blocks:
-  - title: Your Balls
+  - backgroundType: image
+    image: /uploads/20230401_162137.jpg
+    overlayColor: '#000000'
+    overlayOpacity: 5
+    title: Your Balls
     subtitle: 'If you don''t have them, your mother has them'
-    image: /uploads/WhatsApp Image 2025-05-28 at 07.01.30 (1).jpeg
+    primaryButton:
+      label: Get them Back
+      url: 'https://balls.startover.world'
+    secondaryButton:
+      label: Find your Team
+      url: /yourteams
     showInNav: true
     _template: hero
   - title: The Proof is in the Pudding
