@@ -102,7 +102,7 @@ https://becomepresent.mystrikingly.com — Become Present
 https://becomesubversie.mystrikingly.com — becomesubversie.mystrikingly.com
 https://becomesubversive.mystrikingly.com — Become Subversive
 https://becomeunhookable.mystrikingly.com — Become Unhookable
-https://beepbook.mystrikingly.com — *Beep!* Book
+https://beepbook.mystrikingly.com — Beep! Book
 https://beingatrainer.mystrikingly.com — Being A Trainer
 https://beingwith.mystrikingly.com — Being With
 https://beingyourself.mystrikingly.com — Being Yourself
@@ -573,7 +573,7 @@ https://rulesofchaos.com — Rules Of Chaos
 https://rulesofchaos.mystrikingly.com — rulesofchaos.mystrikingly.com
 https://s-h-i-t.mystrikingly.com — S.H.I.T. (Standard Human Intelligence Thoughtware)
 https://savory.global — Alan Savory
-https://saystop.mystrikingly.com — Say, "*Stop!*"
+https://saystop.mystrikingly.com — Say, *Stop!*
 https://saywhatyouwant.mystrikingly.com — Say What You Want
 https://scanning.mystrikingly.com — Scanning
 https://selfabuse.mystrikingly.com — Self Abuse
@@ -601,7 +601,7 @@ https://spaceport.mystrikingly.com/pages/cookie-policy — Learn More
 https://sparks-chinese.mystrikingly.com — S.P.A.R.K.s Chinese (中文)
 https://sparks-czech.mystrikingly.com — S.P.A.R.K.s Czech (česky)
 https://sparks-dutch.mystrikingly.com — S.P.A.R.K.s Dutch (Nederlands)
-https://sparks-english.mystrikingly.com — *"Every revolution begins with a spark..."*
+https://sparks-english.mystrikingly.com — *Every revolution begins with a spark...*
 https://sparks-finnish.mystrikingly.com — S.P.A.R.K.s Finnish (Suomalainen)
 https://sparks-french.mystrikingly.com — S.P.A.R.K.s French (Français)
 https://sparks-german.mystrikingly.com — S.P.A.R.K.s German (Deutsch)
