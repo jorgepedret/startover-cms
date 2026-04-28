@@ -4,6 +4,8 @@ import { defineConfig } from "tinacms";
 const tinaClientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
 const tinaToken = process.env.TINA_TOKEN;
 const hasTinaCloudCredentials = Boolean(tinaClientId && tinaToken);
+// Local dev override: only active when explicitly running `tinacms dev` locally
+const isLocalDev = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AdvancedIdField = ({ input }: any) => {
@@ -666,10 +668,12 @@ export default defineConfig({
         clientId: tinaClientId as string,
         token: tinaToken as string,
       }
-    : {
-        // Allow local filesystem datalayer builds when Tina Cloud is not configured.
+    : isLocalDev
+    ? {
+        // Local filesystem datalayer — only when TINA_PUBLIC_IS_LOCAL=true
         contentApiUrlOverride: "http://localhost:4001/graphql",
-      }),
+      }
+    : {}),
   build: {
     outputFolder: "admin",
     publicFolder: "public",
