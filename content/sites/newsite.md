@@ -41,6 +41,7 @@ blocks:
       - src: /uploads/photo_2023-08-29%2005.13.47.jpeg
     primaryButton:
       label: Mess Process
+      url: '#'
     secondaryButton:
       label: Lower Your Numbness Bar
       url: '#'
