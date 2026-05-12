@@ -18,9 +18,9 @@ blocks:
     title: Creative Process
     subtitle: Unleashing your potential to create
     body: |
-      Creating is messy. 
+      Creating is messy.
 
-      Relating is messy. 
+      Relating is messy.
 
       You don't have to stop creating because it's messy.
 
@@ -83,12 +83,50 @@ blocks:
     _template: bigMedia
   - title: This could be it
     displayMode: grid
-    columns: auto
+    columns: '2'
     images:
       - src: /uploads/photo_2023-08-29%2005.13.47.jpeg
       - src: /uploads/jordan-duca-fwDYmd0DADo-unsplash.jpg
       - src: /uploads/Gemini_Generated_Image_owx55uowx55uowx5.png
       - src: /uploads/moren-hsu-VLaKsTkmVhk-unsplash.jpg
     _template: gallery
+  - layout: row
+    columns: '3'
+    title: Numbers
+    intro: |
+      Some numbers.
+
+      Some people speak numbers.
+
+      Some people are numbers.
+
+      Numbers gonna numb.
+    items:
+      - number: '700'
+        label: Websites
+        mediaType: icon
+        icon: "\U0001F30E"
+      - number: '9000'
+        label: Worldwide Players
+        mediaType: icon
+        icon: "\U0001F47E"
+      - number: '+80,000'
+        label: matrix points
+        mediaType: icon
+        icon: "\U0001F53A\U0001F53B"
+    _template: stats
+  - mediaType: image
+    image: /uploads/photo_2023-08-29%2005.13.47.jpeg
+    height: 50vh
+    overlayColor: '#000000'
+    overlayOpacity: 50
+    title: What's Your Next Move?
+    primaryButton:
+      label: Time To Play
+      url: '#'
+    secondaryButton:
+      label: See the Directory
+      url: /
+    _template: bigMedia
 ---
 
