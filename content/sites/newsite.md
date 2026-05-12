@@ -46,5 +46,49 @@ blocks:
       label: Lower Your Numbness Bar
       url: '#'
     _template: textSection
+  - layout: vertical
+    title: What Can You Do?
+    intro: |
+      You may change your identity to that of someone with agency to engage with this problem, like the major of the city, or an alien with the technology to deal with a situation of this magnitud, or a [gameworld builder](https://gameworldbuilder.mystrikingly.com/) creating new infrastructure that makes the old infrastructure obsolete.
+    items:
+      - mediaType: icon
+        icon: ✏️
+        title: Write it down
+        description: 'Write down all the shit you see, all the messes you see other people doing, the messes they are making for others to clean up.'
+      - mediaType: icon
+        icon: "\U0001F525"
+        title: Set it on fire
+        description: 'Well, fire is cleansing, I''m mostly just making some sense here for the creation of this list and style, but it might make sense at some level'
+      - mediaType: icon
+        icon: ↓
+        title: Get down to the nitty gritty
+        description: 'Get real with yourself. What identity can you play with? How identified are you with your "normal", habitual, identity? Do you have any wiggle room?'
+      - mediaType: icon
+        icon: ✅
+        title: Last but not least
+        description: 'Hit bottom. Nobody can clean up your messes for you. More interestingly, nobody can stop you from cleaning up your messes. Caring for your relating spaces is keeping them clear and clean.'
+    _template: featureList
+  - mediaType: image
+    image: /uploads/jasper-malchuk-rasmussen-bROwwlRsKF4-unsplash.jpg
+    height: 100vh
+    overlayColor: ''
+    title: Context of Contexts
+    subtitle: You don't have to give up your context in order to relate with others.
+    primaryButton:
+      label: Set Context
+      url: 'https://setcontext.mystrikingly.com'
+    secondaryButton:
+      label: Archiarchy
+      url: 'https://archiarchy.org/'
+    _template: bigMedia
+  - title: This could be it
+    displayMode: grid
+    columns: auto
+    images:
+      - src: /uploads/photo_2023-08-29%2005.13.47.jpeg
+      - src: /uploads/jordan-duca-fwDYmd0DADo-unsplash.jpg
+      - src: /uploads/Gemini_Generated_Image_owx55uowx55uowx5.png
+      - src: /uploads/moren-hsu-VLaKsTkmVhk-unsplash.jpg
+    _template: gallery
 ---
 
