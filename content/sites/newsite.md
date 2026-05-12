@@ -128,5 +128,17 @@ blocks:
       label: See the Directory
       url: /
     _template: bigMedia
+  - title: StartOver.xyz
+    body: |
+      **NOTE:** This website is a [Bubble in the Bubble Map](//) of the free-to-play massively-multiplayer online-and-offline thoughtware-upgrade matrix-building personal-transformation real-life adventure-game called [StartOver.xyz](https://startover.xyz). It is a doorway to experiments that upgrade your thoughtware so you can relocate your point of origin and create more possibility. Your knowledge is what you think about. Your thoughtware is what you use to think with. When you change your thoughtware, you go through a liquid state as your mind reorganizes itself. Liquid states can bring up transformational feelings and emotions. By upgrading your thoughtware you build matrix to hold more consciousness and leave behind a low drama life of reactivity. No one can upgrade your thoughtware for you. More interestingly, no one can stop you from upgrading your thoughtware. 
+
+      Our theory is that when we collectively build 1,000,000 new Matrix Points we will change the morphogenetic field of the human race for the better. Please choose responsibly to read this website. Reading this whole website is worth 1 Matrix Point. Doing any of the experiments earns you additional Matrix Points. Please use Matrix Code ARCHLOVE.00 to log your Matrix Point for reading this website on StartOver.xyz. Thank you for playing full out!
+
+      Imprint Copyleft Notice Privacy Policy Terms and Conditions
+
+      Creative Commons BY SA 4.0 International
+
+      StartOver.xyz
+    _template: textSection
 ---
 
