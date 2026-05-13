@@ -59,7 +59,7 @@ async function main() {
       slug: v.slug,
       domain,
       title: titleMap[domain] || v.slug,
-      url: `https://startover.world/${v.slug}`,
+      url: `https://${v.slug}.mystrikingly.com`,
       timestamp: v.timestamp,
       captured: formatTimestamp(v.timestamp),
       status: 'ok',
@@ -98,6 +98,22 @@ async function main() {
 </head>
 <body>
   <div class="container">
+    <div style="background-color: #dbeafe; border-bottom: 1px solid #bfdbfe; padding: 1rem 1.5rem; margin-bottom: 1.5rem; border-radius: 0.5rem;">
+      <div class="container" style="padding: 0;">
+        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+          <div style="flex-shrink: 0; margin-top: 0.125rem;">
+            <svg style="height: 1.25rem; width: 1.25rem; color: #1e40af;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zm-11-1a1 1 0 11-2 0 1 1 0 012 0zM8 9a1 1 0 100-2 1 1 0 000 2zm5-1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <h3 style="font-size: 0.875rem; font-weight: 600; color: #1e3a8a; margin: 0 0 0.25rem 0;">Sites Restored</h3>
+            <p style="font-size: 0.875rem; color: #1e40af; margin: 0;">All sites have been successfully restored. You can continue using this page to search and discover them. You will be automatically redirected to their most up-to-date locations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <header>
       <div class="eyebrow">StartOver.xyz — Index</div>
       <h1>
@@ -148,7 +164,7 @@ async function main() {
          data-title="${s.title.toLowerCase()}"
          data-slug="${s.slug.toLowerCase()}">
         <div class="card-title">${s.title}</div>
-        <div class="card-slug"><span>${s.slug}</span>.startover.world</div>
+        <div class="card-slug"><span>${s.slug}</span>.mystrikingly.com</div>
         <div class="card-date">Last captured ${s.captured}</div>
       </a>`).join('')}
       
