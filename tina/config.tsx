@@ -659,6 +659,36 @@ const contactFormTemplate = {
 };
 
 // ---------------------------------------------------------------------------
+// 12. Experiments
+// ---------------------------------------------------------------------------
+const experimentsTemplate = {
+  name: "experiments",
+  label: "Experiments",
+  fields: [
+    {
+      name: "experiments",
+      label: "Experiments",
+      type: "object" as const,
+      list: true as const,
+      ui: { itemProps: (item: { title?: string }) => ({ label: item?.title || "Experiment" }) },
+      fields: [
+        { name: "title", label: "Title", type: "string" as const, required: true },
+        { name: "logo", label: "Square Logo", type: "image" as const },
+        { name: "matrixCode", label: "Matrix Code", type: "string" as const },
+        {
+          name: "matrixPoints",
+          label: "Matrix Points",
+          type: "number" as const,
+        },
+        { name: "description", label: "Description", type: "rich-text" as const },
+        { name: "link", label: "Link", type: "string" as const },
+      ],
+    },
+    ...navFields,
+  ],
+};
+
+// ---------------------------------------------------------------------------
 // Config
 // ---------------------------------------------------------------------------
 export default defineConfig({
@@ -688,7 +718,7 @@ export default defineConfig({
     collections: [
       {
         name: "site",
-        label: "Sites",
+        label: "Site",
         path: "content/sites",
         format: "md",
         ui: {
@@ -714,6 +744,7 @@ export default defineConfig({
               statsTemplate,
               htmlEmbedTemplate,
               contactFormTemplate,
+              experimentsTemplate,
             ],
           },
         ],
@@ -740,6 +771,27 @@ export default defineConfig({
         fields: [
           { name: "name",        label: "Template Name", type: "string", required: true },
           { name: "description", label: "Description",   type: "string" },
+        ],
+      },
+      {
+        name: "experiment",
+        label: "Experiments",
+        path: "content/experiments/{{data.matrixCode}}",
+        format: "md",
+        ui: {
+          router: ({ document }) => `/experiments/${document._sys.filename}`,
+        },
+        fields: [
+          { name: "title", label: "Title", type: "string", required: true },
+          { name: "logo", label: "Square Logo", type: "image" },
+          { name: "matrixCode", label: "Matrix Code", type: "string" },
+          {
+            name: "matrixPoints",
+            label: "Matrix Points",
+            type: "number",
+          },
+          { name: "description", label: "Description", type: "rich-text" },
+          { name: "link", label: "Link", type: "string" },
         ],
       },
     ],

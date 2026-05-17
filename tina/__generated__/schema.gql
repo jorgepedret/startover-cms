@@ -60,12 +60,15 @@ type Query {
   homepageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomepageFilter): HomepageConnection!
   template(relativePath: String): Template!
   templateConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: TemplateFilter): TemplateConnection!
+  experiment(relativePath: String): Experiment!
+  experimentConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ExperimentFilter): ExperimentConnection!
 }
 
 input DocumentFilter {
   site: SiteFilter
   homepage: HomepageFilter
   template: TemplateFilter
+  experiment: ExperimentFilter
 }
 
 type DocumentConnectionEdges {
@@ -91,7 +94,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Site | Homepage | Template | Folder
+union DocumentNode = Site | Homepage | Template | Experiment | Folder
 
 type SiteBlocksHeroPrimaryButton {
   label: String
@@ -334,7 +337,23 @@ type SiteBlocksContactForm {
   blockId: String
 }
 
-union SiteBlocks = SiteBlocksHero | SiteBlocksTextSection | SiteBlocksInfoBoxes | SiteBlocksFeatureList | SiteBlocksGallery | SiteBlocksBigMedia | SiteBlocksTestimonials | SiteBlocksSignupForm | SiteBlocksStats | SiteBlocksHtmlEmbed | SiteBlocksContactForm
+type SiteBlocksExperimentsExperiments {
+  title: String!
+  logo: String
+  matrixCode: String
+  matrixPoints: Float
+  description: JSON
+  link: String
+}
+
+type SiteBlocksExperiments {
+  experiments: [SiteBlocksExperimentsExperiments]
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
+union SiteBlocks = SiteBlocksHero | SiteBlocksTextSection | SiteBlocksInfoBoxes | SiteBlocksFeatureList | SiteBlocksGallery | SiteBlocksBigMedia | SiteBlocksTestimonials | SiteBlocksSignupForm | SiteBlocksStats | SiteBlocksHtmlEmbed | SiteBlocksContactForm | SiteBlocksExperiments
 
 type Site implements Node & Document {
   title: String!
@@ -621,6 +640,22 @@ input SiteBlocksContactFormFilter {
   blockId: StringFilter
 }
 
+input SiteBlocksExperimentsExperimentsFilter {
+  title: StringFilter
+  logo: ImageFilter
+  matrixCode: StringFilter
+  matrixPoints: NumberFilter
+  description: RichTextFilter
+  link: StringFilter
+}
+
+input SiteBlocksExperimentsFilter {
+  experiments: SiteBlocksExperimentsExperimentsFilter
+  showInNav: BooleanFilter
+  navLabel: StringFilter
+  blockId: StringFilter
+}
+
 input SiteBlocksFilter {
   hero: SiteBlocksHeroFilter
   textSection: SiteBlocksTextSectionFilter
@@ -633,6 +668,7 @@ input SiteBlocksFilter {
   stats: SiteBlocksStatsFilter
   htmlEmbed: SiteBlocksHtmlEmbedFilter
   contactForm: SiteBlocksContactFormFilter
+  experiments: SiteBlocksExperimentsFilter
 }
 
 input SiteFilter {
@@ -700,6 +736,38 @@ type TemplateConnection implements Connection {
   edges: [TemplateConnectionEdges]
 }
 
+type Experiment implements Node & Document {
+  title: String!
+  logo: String
+  matrixCode: String
+  matrixPoints: Float
+  description: JSON
+  link: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ExperimentFilter {
+  title: StringFilter
+  logo: ImageFilter
+  matrixCode: StringFilter
+  matrixPoints: NumberFilter
+  description: RichTextFilter
+  link: StringFilter
+}
+
+type ExperimentConnectionEdges {
+  cursor: String!
+  node: Experiment
+}
+
+type ExperimentConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ExperimentConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -712,12 +780,15 @@ type Mutation {
   createHomepage(relativePath: String!, params: HomepageMutation!): Homepage!
   updateTemplate(relativePath: String!, params: TemplateMutation!): Template!
   createTemplate(relativePath: String!, params: TemplateMutation!): Template!
+  updateExperiment(relativePath: String!, params: ExperimentMutation!): Experiment!
+  createExperiment(relativePath: String!, params: ExperimentMutation!): Experiment!
 }
 
 input DocumentUpdateMutation {
   site: SiteMutation
   homepage: HomepageMutation
   template: TemplateMutation
+  experiment: ExperimentMutation
   relativePath: String
 }
 
@@ -725,6 +796,7 @@ input DocumentMutation {
   site: SiteMutation
   homepage: HomepageMutation
   template: TemplateMutation
+  experiment: ExperimentMutation
 }
 
 input SiteBlocksHeroPrimaryButtonMutation {
@@ -968,6 +1040,22 @@ input SiteBlocksContactFormMutation {
   blockId: String
 }
 
+input SiteBlocksExperimentsExperimentsMutation {
+  title: String
+  logo: String
+  matrixCode: String
+  matrixPoints: Float
+  description: JSON
+  link: String
+}
+
+input SiteBlocksExperimentsMutation {
+  experiments: [SiteBlocksExperimentsExperimentsMutation]
+  showInNav: Boolean
+  navLabel: String
+  blockId: String
+}
+
 input SiteBlocksMutation {
   hero: SiteBlocksHeroMutation
   textSection: SiteBlocksTextSectionMutation
@@ -980,6 +1068,7 @@ input SiteBlocksMutation {
   stats: SiteBlocksStatsMutation
   htmlEmbed: SiteBlocksHtmlEmbedMutation
   contactForm: SiteBlocksContactFormMutation
+  experiments: SiteBlocksExperimentsMutation
 }
 
 input SiteMutation {
@@ -996,6 +1085,15 @@ input HomepageMutation {
 input TemplateMutation {
   name: String
   description: String
+}
+
+input ExperimentMutation {
+  title: String
+  logo: String
+  matrixCode: String
+  matrixPoints: Float
+  description: JSON
+  link: String
 }
 
 schema {

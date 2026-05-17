@@ -220,6 +220,20 @@ fragment SiteParts on Site {
       navLabel
       blockId
     }
+    ... on SiteBlocksExperiments {
+      experiments {
+        __typename
+        title
+        logo
+        matrixCode
+        matrixPoints
+        description
+        link
+      }
+      showInNav
+      navLabel
+      blockId
+    }
   }
 }
 
@@ -233,4 +247,14 @@ fragment TemplateParts on Template {
   __typename
   name
   description
+}
+
+fragment ExperimentParts on Experiment {
+  __typename
+  title
+  logo
+  matrixCode
+  matrixPoints
+  description
+  link
 }

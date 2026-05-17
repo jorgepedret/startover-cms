@@ -147,5 +147,68 @@ It is not for everyone, and that's fine. It's for people at the edge. There are 
 
 ---
 
+## Where We Are Now — and What Phase 2 Requires
+
+Phase 1 is already happening.
+
+People are playing, organizing, and doing the experiments across the world. Teams are forming. Real actions are being taken. The results are being published — on Substack, Medium, Facebook, in books, on individual Strikingly sites. The game is alive. It is just not yet legible at scale. Players in São Paulo don't know about players in Berlin. A team forming in New Zealand can't find the team that already exists two hours away. The work is real but the network is invisible to itself.
+
+Phase 2 is the map — the layer that makes the network visible to itself without making it dangerously visible to those who might want to stop it.
+
+---
+
+## Phase 2: The Map — Design and Resilience
+
+### The Real Concern
+
+Making a network visible creates a target. This is not paranoia — it's history. Civil rights networks were infiltrated and dismantled. Environmental movements were surveilled. Intentional communities have been targeted by hostile neighbors, local authorities, and ideological opponents. Alternative economic experiments get shut down through regulatory pressure. Any network building something genuinely different from the dominant culture will eventually draw attention from people who benefit from the dominant culture staying dominant.
+
+The question isn't whether to be visible. It's *what* to make visible, at what layer, and to whom.
+
+### The Core Insight: Visibility and Vulnerability Are Not the Same Thing
+
+Sometimes they're opposites.
+
+The Zapatistas became very hard to destroy the moment they became globally famous. An attack planned for January 1994 happened — but the international attention that followed made a follow-up assault politically impossible. Visibility at scale created a kind of immunity that secrecy never could have. The Quakers survived centuries of persecution not by hiding but by being so publicly, recognizably themselves that attacking them became costly and bad optics. Nelson Mandela on Robben Island was harder to disappear than Nelson Mandela as an underground operative.
+
+The map is not designed to make the game's existence deniable. It can't be and shouldn't be. The game needs to be findable by the people at the edge who are looking for it. What the map is designed to do is make the game's *ideas and existence* fully public, while keeping the game's *participants and operational communities* protected.
+
+The teaching and the community are different things. The teaching — the experiments, the framework, the results — should be as visible as possible. You cannot attack a teaching effectively. The community — the specific people, where they meet, what they're building — deserves protection proportional to its vulnerability.
+
+### Three Layers, Three Audiences
+
+**Layer 1 — Fully public.**
+Anyone can see this. It shows that the game is active, roughly where activity is concentrated (country or region level, never city or address), and what kinds of work is happening. Not who. Not where exactly. Not internal dynamics. Just: *something real is happening here*. This layer is designed to be seen. It creates international visibility that functions as protection. It is also the layer that makes the game findable by people at the edge who are looking for it.
+
+**Layer 2 — Visible to players who are known to someone already in the network.**
+Not verified by a platform — known by a person. A real human introduction is required. No account creation bypasses it. At this layer you can see other teams in your region, make contact, find collaborators. This is how Quaker meeting networks worked: you could find the next meeting if someone in the network vouched for you. This layer enables coordination without exposing the community to anyone who fills out a signup form.
+
+**Layer 3 — Internal to each team, invisible from outside entirely.**
+Who they are, where they meet, what they're working on, what's difficult. This layer doesn't appear on any map at any access level. It is only ever held by the people in the room.
+
+### The Network's Inherent Resilience
+
+The map is decentralized. There is no center to take down. No leader whose arrest ends the movement. No single server whose seizure removes the map. No one community whose destruction stops the work. Each team is already autonomous. The experiments already live on hundreds of Strikingly sites, Substacks, and books. If any node goes dark — attacked, burned out, moved on — the network continues. The map updates.
+
+This is the deepest point of contact with the Daemon inspiration: the Daemon was hard to stop not because it was hidden, but because it was distributed. Every node that was taken out had already propagated its functions elsewhere. The network learned from each attack and became more resilient.
+
+### The Practices as Protection
+
+There is a second line of resilience that is less obvious but more interesting: the game's own practices make the network harder to infiltrate.
+
+Infiltration of social movements usually works through a few mechanisms — provoking someone reactive into bad decisions, flattering someone status-hungry into disclosing, exploiting unprocessed shadow material (the affair, the financial irregularity, the unspoken resentment), or simply seeding confusion and conflict in group dynamics.
+
+A network of people who have done genuine work on their reactivity, their shadow, their relationship to status, their capacity for honest conflict — is genuinely harder to infiltrate. Not impossible. But harder. The practices that make people more fully human also make them worse targets for the standard toolkit. This is not a reason to be naive. It is a reason to take the practices seriously as operational infrastructure, not just personal development.
+
+### What the Map Cannot Protect Against
+
+The map cannot protect against a sufficiently powerful and motivated state actor who decides this network is a serious threat.
+
+If that happens, the game has become consequential enough that being a target is evidence of impact. At that point the protection isn't design — it's the same thing that protected the Zapatistas, that protected Mandela: being so publicly known and internationally recognized that the cost of the attack exceeds the benefit.
+
+That's a long way off. But it's worth building toward, not away from.
+
+---
+
 *Built on StartOver.xyz*
-*Version 0.2 — Simpler. Closer.*
+*Version 0.3 — Phase 1 is real. Phase 2 is next.*

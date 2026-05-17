@@ -5,6 +5,7 @@ import { jsx, jsxs } from "react/jsx-runtime";
 var tinaClientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
 var tinaToken = process.env.TINA_TOKEN;
 var hasTinaCloudCredentials = Boolean(tinaClientId && tinaToken);
+var isLocalDev = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 var AdvancedIdField = ({ input }) => {
   const [open, setOpen] = React.useState(false);
   return jsxs("div", { style: { marginTop: 4 }, children: [
@@ -611,15 +612,41 @@ var contactFormTemplate = {
     ...navFields
   ]
 };
+var experimentsTemplate = {
+  name: "experiments",
+  label: "Experiments",
+  fields: [
+    {
+      name: "experiments",
+      label: "Experiments",
+      type: "object",
+      list: true,
+      ui: { itemProps: (item) => ({ label: item?.title || "Experiment" }) },
+      fields: [
+        { name: "title", label: "Title", type: "string", required: true },
+        { name: "logo", label: "Square Logo", type: "image" },
+        { name: "matrixCode", label: "Matrix Code", type: "string" },
+        {
+          name: "matrixPoints",
+          label: "Matrix Points",
+          type: "number"
+        },
+        { name: "description", label: "Description", type: "rich-text" },
+        { name: "link", label: "Link", type: "string" }
+      ]
+    },
+    ...navFields
+  ]
+};
 var config_default = defineConfig({
   branch: "main",
   ...hasTinaCloudCredentials ? {
     clientId: tinaClientId,
     token: tinaToken
-  } : {
-    // Allow local filesystem datalayer builds when Tina Cloud is not configured.
+  } : isLocalDev ? {
+    // Local filesystem datalayer — only when TINA_PUBLIC_IS_LOCAL=true
     contentApiUrlOverride: "http://localhost:4001/graphql"
-  },
+  } : {},
   build: {
     outputFolder: "admin",
     publicFolder: "public"
@@ -634,7 +661,7 @@ var config_default = defineConfig({
     collections: [
       {
         name: "site",
-        label: "Sites",
+        label: "Site",
         path: "content/sites",
         format: "md",
         ui: {
@@ -659,7 +686,8 @@ var config_default = defineConfig({
               signupFormTemplate,
               statsTemplate,
               htmlEmbedTemplate,
-              contactFormTemplate
+              contactFormTemplate,
+              experimentsTemplate
             ]
           }
         ]
@@ -686,6 +714,27 @@ var config_default = defineConfig({
         fields: [
           { name: "name", label: "Template Name", type: "string", required: true },
           { name: "description", label: "Description", type: "string" }
+        ]
+      },
+      {
+        name: "experiment",
+        label: "Experiments",
+        path: "content/experiments/{{data.matrixCode}}",
+        format: "md",
+        ui: {
+          router: ({ document }) => `/experiments/${document._sys.filename}`
+        },
+        fields: [
+          { name: "title", label: "Title", type: "string", required: true },
+          { name: "logo", label: "Square Logo", type: "image" },
+          { name: "matrixCode", label: "Matrix Code", type: "string" },
+          {
+            name: "matrixPoints",
+            label: "Matrix Points",
+            type: "number"
+          },
+          { name: "description", label: "Description", type: "rich-text" },
+          { name: "link", label: "Link", type: "string" }
         ]
       }
     ]
