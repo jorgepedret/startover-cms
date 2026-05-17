@@ -781,15 +781,20 @@ export default defineConfig({
       {
         name: "experiment",
         label: "Experiments",
-        path: "content/experiments/{{data.matrixCode}}",
+        path: "content/experiments",
         format: "md",
         ui: {
           router: ({ document }) => `/experiments/${document._sys.filename}`,
+          filename: {
+            slugify: (doc: any) => {
+              return doc.matrixCode ? doc.matrixCode.toLowerCase().replace(/[^\w-]/g, "") : "experiment";
+            },
+          },
         },
         fields: [
           { name: "title", label: "Title", type: "string", required: true },
+          { name: "matrixCode", label: "Matrix Code", type: "string", required: true },
           { name: "logo", label: "Square Logo", type: "image" },
-          { name: "matrixCode", label: "Matrix Code", type: "string" },
           {
             name: "matrixPoints",
             label: "Matrix Points",
