@@ -485,19 +485,32 @@ export type SiteBlocksContactForm = {
   blockId?: Maybe<Scalars['String']['output']>;
 };
 
-export type SiteBlocksExperimentsExperiments = {
-  __typename?: 'SiteBlocksExperimentsExperiments';
+export type SiteBlocksExperimentsExperimentsListExperimentRefExperimentId = Experiment;
+
+export type SiteBlocksExperimentsExperimentsListExperimentRef = {
+  __typename?: 'SiteBlocksExperimentsExperimentsListExperimentRef';
+  experimentId?: Maybe<SiteBlocksExperimentsExperimentsListExperimentRefExperimentId>;
+};
+
+export type SiteBlocksExperimentsExperimentsListExperimentItemLink = Site;
+
+export type SiteBlocksExperimentsExperimentsListExperimentItem = {
+  __typename?: 'SiteBlocksExperimentsExperimentsListExperimentItem';
   title: Scalars['String']['output'];
+  matrixCode: Scalars['String']['output'];
   logo?: Maybe<Scalars['String']['output']>;
-  matrixCode?: Maybe<Scalars['String']['output']>;
   matrixPoints?: Maybe<Scalars['Float']['output']>;
   description?: Maybe<Scalars['JSON']['output']>;
-  link?: Maybe<Scalars['String']['output']>;
+  link?: Maybe<SiteBlocksExperimentsExperimentsListExperimentItemLink>;
 };
+
+export type SiteBlocksExperimentsExperimentsList = SiteBlocksExperimentsExperimentsListExperimentRef | SiteBlocksExperimentsExperimentsListExperimentItem;
 
 export type SiteBlocksExperiments = {
   __typename?: 'SiteBlocksExperiments';
-  experiments?: Maybe<Array<Maybe<SiteBlocksExperimentsExperiments>>>;
+  heading?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  experimentsList?: Maybe<Array<Maybe<SiteBlocksExperimentsExperimentsList>>>;
   showInNav?: Maybe<Scalars['Boolean']['output']>;
   navLabel?: Maybe<Scalars['String']['output']>;
   blockId?: Maybe<Scalars['String']['output']>;
@@ -791,17 +804,36 @@ export type SiteBlocksContactFormFilter = {
   blockId?: InputMaybe<StringFilter>;
 };
 
-export type SiteBlocksExperimentsExperimentsFilter = {
+export type SiteBlocksExperimentsExperimentsListExperimentRefExperimentIdFilter = {
+  experiment?: InputMaybe<ExperimentFilter>;
+};
+
+export type SiteBlocksExperimentsExperimentsListExperimentRefFilter = {
+  experimentId?: InputMaybe<SiteBlocksExperimentsExperimentsListExperimentRefExperimentIdFilter>;
+};
+
+export type SiteBlocksExperimentsExperimentsListExperimentItemLinkFilter = {
+  site?: InputMaybe<SiteFilter>;
+};
+
+export type SiteBlocksExperimentsExperimentsListExperimentItemFilter = {
   title?: InputMaybe<StringFilter>;
-  logo?: InputMaybe<ImageFilter>;
   matrixCode?: InputMaybe<StringFilter>;
+  logo?: InputMaybe<ImageFilter>;
   matrixPoints?: InputMaybe<NumberFilter>;
   description?: InputMaybe<RichTextFilter>;
-  link?: InputMaybe<StringFilter>;
+  link?: InputMaybe<SiteBlocksExperimentsExperimentsListExperimentItemLinkFilter>;
+};
+
+export type SiteBlocksExperimentsExperimentsListFilter = {
+  experimentRef?: InputMaybe<SiteBlocksExperimentsExperimentsListExperimentRefFilter>;
+  experimentItem?: InputMaybe<SiteBlocksExperimentsExperimentsListExperimentItemFilter>;
 };
 
 export type SiteBlocksExperimentsFilter = {
-  experiments?: InputMaybe<SiteBlocksExperimentsExperimentsFilter>;
+  heading?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  experimentsList?: InputMaybe<SiteBlocksExperimentsExperimentsListFilter>;
   showInNav?: InputMaybe<BooleanFilter>;
   navLabel?: InputMaybe<StringFilter>;
   blockId?: InputMaybe<StringFilter>;
@@ -895,26 +927,32 @@ export type TemplateConnection = Connection & {
   edges?: Maybe<Array<Maybe<TemplateConnectionEdges>>>;
 };
 
+export type ExperimentLink = Site;
+
 export type Experiment = Node & Document & {
   __typename?: 'Experiment';
   title: Scalars['String']['output'];
+  matrixCode: Scalars['String']['output'];
   logo?: Maybe<Scalars['String']['output']>;
-  matrixCode?: Maybe<Scalars['String']['output']>;
   matrixPoints?: Maybe<Scalars['Float']['output']>;
   description?: Maybe<Scalars['JSON']['output']>;
-  link?: Maybe<Scalars['String']['output']>;
+  link?: Maybe<ExperimentLink>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
+export type ExperimentLinkFilter = {
+  site?: InputMaybe<SiteFilter>;
+};
+
 export type ExperimentFilter = {
   title?: InputMaybe<StringFilter>;
-  logo?: InputMaybe<ImageFilter>;
   matrixCode?: InputMaybe<StringFilter>;
+  logo?: InputMaybe<ImageFilter>;
   matrixPoints?: InputMaybe<NumberFilter>;
   description?: InputMaybe<RichTextFilter>;
-  link?: InputMaybe<StringFilter>;
+  link?: InputMaybe<ExperimentLinkFilter>;
 };
 
 export type ExperimentConnectionEdges = {
@@ -1284,17 +1322,28 @@ export type SiteBlocksContactFormMutation = {
   blockId?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type SiteBlocksExperimentsExperimentsMutation = {
+export type SiteBlocksExperimentsExperimentsListExperimentRefMutation = {
+  experimentId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteBlocksExperimentsExperimentsListExperimentItemMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  logo?: InputMaybe<Scalars['String']['input']>;
   matrixCode?: InputMaybe<Scalars['String']['input']>;
+  logo?: InputMaybe<Scalars['String']['input']>;
   matrixPoints?: InputMaybe<Scalars['Float']['input']>;
   description?: InputMaybe<Scalars['JSON']['input']>;
   link?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type SiteBlocksExperimentsExperimentsListMutation = {
+  experimentRef?: InputMaybe<SiteBlocksExperimentsExperimentsListExperimentRefMutation>;
+  experimentItem?: InputMaybe<SiteBlocksExperimentsExperimentsListExperimentItemMutation>;
+};
+
 export type SiteBlocksExperimentsMutation = {
-  experiments?: InputMaybe<Array<InputMaybe<SiteBlocksExperimentsExperimentsMutation>>>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  experimentsList?: InputMaybe<Array<InputMaybe<SiteBlocksExperimentsExperimentsListMutation>>>;
   showInNav?: InputMaybe<Scalars['Boolean']['input']>;
   navLabel?: InputMaybe<Scalars['String']['input']>;
   blockId?: InputMaybe<Scalars['String']['input']>;
@@ -1333,27 +1382,27 @@ export type TemplateMutation = {
 
 export type ExperimentMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  logo?: InputMaybe<Scalars['String']['input']>;
   matrixCode?: InputMaybe<Scalars['String']['input']>;
+  logo?: InputMaybe<Scalars['String']['input']>;
   matrixPoints?: InputMaybe<Scalars['Float']['input']>;
   description?: InputMaybe<Scalars['JSON']['input']>;
   link?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type SitePartsFragment = { __typename: 'Site', title: string, slug?: string | null, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experiments?: Array<{ __typename: 'SiteBlocksExperimentsExperiments', title: string, logo?: string | null, matrixCode?: string | null, matrixPoints?: number | null, description?: any | null, link?: string | null } | null> | null } | null> | null };
+export type SitePartsFragment = { __typename: 'Site', title: string, slug?: string | null, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef', experimentId?: { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, id: string, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef' } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef', experimentId?: { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef' } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null };
 
 export type HomepagePartsFragment = { __typename: 'Homepage', title?: string | null, subtitle?: string | null };
 
 export type TemplatePartsFragment = { __typename: 'Template', name: string, description?: string | null };
 
-export type ExperimentPartsFragment = { __typename: 'Experiment', title: string, logo?: string | null, matrixCode?: string | null, matrixPoints?: number | null, description?: any | null, link?: string | null };
+export type ExperimentPartsFragment = { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef', experimentId?: { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef' } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null };
 
 export type SiteQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type SiteQuery = { __typename?: 'Query', site: { __typename: 'Site', id: string, title: string, slug?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experiments?: Array<{ __typename: 'SiteBlocksExperimentsExperiments', title: string, logo?: string | null, matrixCode?: string | null, matrixPoints?: number | null, description?: any | null, link?: string | null } | null> | null } | null> | null } };
+export type SiteQuery = { __typename?: 'Query', site: { __typename: 'Site', id: string, title: string, slug?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef', experimentId?: { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, id: string, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef' } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef', experimentId?: { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef' } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null } };
 
 export type SiteConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1365,7 +1414,7 @@ export type SiteConnectionQueryVariables = Exact<{
 }>;
 
 
-export type SiteConnectionQuery = { __typename?: 'Query', siteConnection: { __typename?: 'SiteConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SiteConnectionEdges', cursor: string, node?: { __typename: 'Site', id: string, title: string, slug?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experiments?: Array<{ __typename: 'SiteBlocksExperimentsExperiments', title: string, logo?: string | null, matrixCode?: string | null, matrixPoints?: number | null, description?: any | null, link?: string | null } | null> | null } | null> | null } | null } | null> | null } };
+export type SiteConnectionQuery = { __typename?: 'Query', siteConnection: { __typename?: 'SiteConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SiteConnectionEdges', cursor: string, node?: { __typename: 'Site', id: string, title: string, slug?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef', experimentId?: { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, id: string, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef' } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef', experimentId?: { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef' } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export type HomepageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1410,7 +1459,7 @@ export type ExperimentQueryVariables = Exact<{
 }>;
 
 
-export type ExperimentQuery = { __typename?: 'Query', experiment: { __typename: 'Experiment', id: string, title: string, logo?: string | null, matrixCode?: string | null, matrixPoints?: number | null, description?: any | null, link?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ExperimentQuery = { __typename?: 'Query', experiment: { __typename: 'Experiment', id: string, title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef', experimentId?: { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef' } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } };
 
 export type ExperimentConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1422,7 +1471,7 @@ export type ExperimentConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ExperimentConnectionQuery = { __typename?: 'Query', experimentConnection: { __typename?: 'ExperimentConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ExperimentConnectionEdges', cursor: string, node?: { __typename: 'Experiment', id: string, title: string, logo?: string | null, matrixCode?: string | null, matrixPoints?: number | null, description?: any | null, link?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ExperimentConnectionQuery = { __typename?: 'Query', experimentConnection: { __typename?: 'ExperimentConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ExperimentConnectionEdges', cursor: string, node?: { __typename: 'Experiment', id: string, title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef', experimentId?: { __typename: 'Experiment', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null, link?: { __typename: 'Site', title: string, slug?: string | null, id: string, blocks?: Array<{ __typename: 'SiteBlocksHero', layout?: string | null, height?: string | null, backgroundType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksHeroPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksHeroSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTextSection', layout?: string | null, title?: string | null, subtitle?: string | null, body?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksTextSectionImages', src?: string | null, alt?: string | null } | null> | null, primaryButton?: { __typename: 'SiteBlocksTextSectionPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksTextSectionSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksInfoBoxes', title?: string | null, columns?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, cards?: Array<{ __typename: 'SiteBlocksInfoBoxesCards', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, titleLink?: string | null, description?: string | null, button?: { __typename: 'SiteBlocksInfoBoxesCardsButton', label?: string | null, url?: string | null } | null } | null> | null } | { __typename: 'SiteBlocksFeatureList', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksFeatureListItems', mediaType?: string | null, icon?: string | null, image?: string | null, title?: string | null, description?: string | null } | null> | null } | { __typename: 'SiteBlocksGallery', title?: string | null, displayMode?: string | null, columns?: string | null, autoplay?: boolean | null, navigation?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, images?: Array<{ __typename: 'SiteBlocksGalleryImages', src?: string | null, alt?: string | null, caption?: string | null, titleOverlay?: string | null, linkUrl?: string | null } | null> | null } | { __typename: 'SiteBlocksBigMedia', mediaType?: string | null, image?: string | null, videoUrl?: string | null, backgroundColor?: string | null, height?: string | null, heightPx?: number | null, overlayColor?: string | null, overlayOpacity?: number | null, title?: string | null, subtitle?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, primaryButton?: { __typename: 'SiteBlocksBigMediaPrimaryButton', label?: string | null, url?: string | null } | null, secondaryButton?: { __typename: 'SiteBlocksBigMediaSecondaryButton', label?: string | null, url?: string | null } | null } | { __typename: 'SiteBlocksTestimonials', layout?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksTestimonialsItems', quote?: any | null, authorName?: string | null, authorTitle?: string | null, authorPhoto?: string | null, companyLogo?: string | null, rating?: number | null } | null> | null } | { __typename: 'SiteBlocksSignupForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksStats', layout?: string | null, columns?: string | null, title?: string | null, intro?: any | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, items?: Array<{ __typename: 'SiteBlocksStatsItems', number?: string | null, label?: string | null, mediaType?: string | null, icon?: string | null, image?: string | null } | null> | null } | { __typename: 'SiteBlocksHtmlEmbed', title?: string | null, intro?: any | null, width?: string | null, heightType?: string | null, heightPx?: number | null, html?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null } | { __typename: 'SiteBlocksContactForm', title?: string | null, intro?: any | null, showNameField?: boolean | null, nameRequired?: boolean | null, nameFieldLabel?: string | null, emailFieldLabel?: string | null, showSubjectField?: boolean | null, subjectRequired?: boolean | null, subjectFieldLabel?: string | null, subjectType?: string | null, messageFieldLabel?: string | null, submitLabel?: string | null, submitColor?: string | null, submitStyle?: string | null, successAction?: string | null, successMessage?: string | null, redirectUrl?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, subjectOptions?: Array<{ __typename: 'SiteBlocksContactFormSubjectOptions', option?: string | null } | null> | null } | { __typename: 'SiteBlocksExperiments', heading?: string | null, description?: string | null, showInNav?: boolean | null, navLabel?: string | null, blockId?: string | null, experimentsList?: Array<{ __typename: 'SiteBlocksExperimentsExperimentsListExperimentRef' } | { __typename: 'SiteBlocksExperimentsExperimentsListExperimentItem', title: string, matrixCode: string, logo?: string | null, matrixPoints?: number | null, description?: any | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null } | null> | null } };
 
 export const SitePartsFragmentDoc = gql`
     fragment SiteParts on Site {
@@ -1648,14 +1697,830 @@ export const SitePartsFragmentDoc = gql`
       blockId
     }
     ... on SiteBlocksExperiments {
-      experiments {
+      heading
+      description
+      experimentsList {
         __typename
-        title
-        logo
-        matrixCode
-        matrixPoints
-        description
-        link
+        ... on SiteBlocksExperimentsExperimentsListExperimentRef {
+          experimentId {
+            ... on Experiment {
+              __typename
+              title
+              matrixCode
+              logo
+              matrixPoints
+              description
+              link {
+                ... on Site {
+                  __typename
+                  title
+                  slug
+                  blocks {
+                    __typename
+                    ... on SiteBlocksHero {
+                      layout
+                      height
+                      backgroundType
+                      image
+                      videoUrl
+                      backgroundColor
+                      overlayColor
+                      overlayOpacity
+                      title
+                      subtitle
+                      primaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      secondaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksTextSection {
+                      layout
+                      title
+                      subtitle
+                      body
+                      images {
+                        __typename
+                        src
+                        alt
+                      }
+                      primaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      secondaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksInfoBoxes {
+                      title
+                      columns
+                      cards {
+                        __typename
+                        mediaType
+                        icon
+                        image
+                        title
+                        titleLink
+                        description
+                        button {
+                          __typename
+                          label
+                          url
+                        }
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksFeatureList {
+                      layout
+                      title
+                      intro
+                      items {
+                        __typename
+                        mediaType
+                        icon
+                        image
+                        title
+                        description
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksGallery {
+                      title
+                      displayMode
+                      columns
+                      autoplay
+                      navigation
+                      images {
+                        __typename
+                        src
+                        alt
+                        caption
+                        titleOverlay
+                        linkUrl
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksBigMedia {
+                      mediaType
+                      image
+                      videoUrl
+                      backgroundColor
+                      height
+                      heightPx
+                      overlayColor
+                      overlayOpacity
+                      title
+                      subtitle
+                      primaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      secondaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksTestimonials {
+                      layout
+                      title
+                      intro
+                      items {
+                        __typename
+                        quote
+                        authorName
+                        authorTitle
+                        authorPhoto
+                        companyLogo
+                        rating
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksSignupForm {
+                      title
+                      intro
+                      showNameField
+                      nameFieldLabel
+                      emailFieldLabel
+                      submitLabel
+                      submitColor
+                      submitStyle
+                      successAction
+                      successMessage
+                      redirectUrl
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksStats {
+                      layout
+                      columns
+                      title
+                      intro
+                      items {
+                        __typename
+                        number
+                        label
+                        mediaType
+                        icon
+                        image
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksHtmlEmbed {
+                      title
+                      intro
+                      width
+                      heightType
+                      heightPx
+                      html
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksContactForm {
+                      title
+                      intro
+                      showNameField
+                      nameRequired
+                      nameFieldLabel
+                      emailFieldLabel
+                      showSubjectField
+                      subjectRequired
+                      subjectFieldLabel
+                      subjectType
+                      subjectOptions {
+                        __typename
+                        option
+                      }
+                      messageFieldLabel
+                      submitLabel
+                      submitColor
+                      submitStyle
+                      successAction
+                      successMessage
+                      redirectUrl
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksExperiments {
+                      heading
+                      description
+                      experimentsList {
+                        __typename
+                        ... on SiteBlocksExperimentsExperimentsListExperimentItem {
+                          title
+                          matrixCode
+                          logo
+                          matrixPoints
+                          description
+                        }
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                  }
+                }
+                ... on Document {
+                  _sys {
+                    filename
+                    basename
+                    hasReferences
+                    breadcrumbs
+                    path
+                    relativePath
+                    extension
+                  }
+                  id
+                }
+              }
+            }
+            ... on Document {
+              _sys {
+                filename
+                basename
+                hasReferences
+                breadcrumbs
+                path
+                relativePath
+                extension
+              }
+              id
+            }
+          }
+        }
+        ... on SiteBlocksExperimentsExperimentsListExperimentItem {
+          title
+          matrixCode
+          logo
+          matrixPoints
+          description
+          link {
+            ... on Site {
+              __typename
+              title
+              slug
+              blocks {
+                __typename
+                ... on SiteBlocksHero {
+                  layout
+                  height
+                  backgroundType
+                  image
+                  videoUrl
+                  backgroundColor
+                  overlayColor
+                  overlayOpacity
+                  title
+                  subtitle
+                  primaryButton {
+                    __typename
+                    label
+                    url
+                  }
+                  secondaryButton {
+                    __typename
+                    label
+                    url
+                  }
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksTextSection {
+                  layout
+                  title
+                  subtitle
+                  body
+                  images {
+                    __typename
+                    src
+                    alt
+                  }
+                  primaryButton {
+                    __typename
+                    label
+                    url
+                  }
+                  secondaryButton {
+                    __typename
+                    label
+                    url
+                  }
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksInfoBoxes {
+                  title
+                  columns
+                  cards {
+                    __typename
+                    mediaType
+                    icon
+                    image
+                    title
+                    titleLink
+                    description
+                    button {
+                      __typename
+                      label
+                      url
+                    }
+                  }
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksFeatureList {
+                  layout
+                  title
+                  intro
+                  items {
+                    __typename
+                    mediaType
+                    icon
+                    image
+                    title
+                    description
+                  }
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksGallery {
+                  title
+                  displayMode
+                  columns
+                  autoplay
+                  navigation
+                  images {
+                    __typename
+                    src
+                    alt
+                    caption
+                    titleOverlay
+                    linkUrl
+                  }
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksBigMedia {
+                  mediaType
+                  image
+                  videoUrl
+                  backgroundColor
+                  height
+                  heightPx
+                  overlayColor
+                  overlayOpacity
+                  title
+                  subtitle
+                  primaryButton {
+                    __typename
+                    label
+                    url
+                  }
+                  secondaryButton {
+                    __typename
+                    label
+                    url
+                  }
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksTestimonials {
+                  layout
+                  title
+                  intro
+                  items {
+                    __typename
+                    quote
+                    authorName
+                    authorTitle
+                    authorPhoto
+                    companyLogo
+                    rating
+                  }
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksSignupForm {
+                  title
+                  intro
+                  showNameField
+                  nameFieldLabel
+                  emailFieldLabel
+                  submitLabel
+                  submitColor
+                  submitStyle
+                  successAction
+                  successMessage
+                  redirectUrl
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksStats {
+                  layout
+                  columns
+                  title
+                  intro
+                  items {
+                    __typename
+                    number
+                    label
+                    mediaType
+                    icon
+                    image
+                  }
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksHtmlEmbed {
+                  title
+                  intro
+                  width
+                  heightType
+                  heightPx
+                  html
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksContactForm {
+                  title
+                  intro
+                  showNameField
+                  nameRequired
+                  nameFieldLabel
+                  emailFieldLabel
+                  showSubjectField
+                  subjectRequired
+                  subjectFieldLabel
+                  subjectType
+                  subjectOptions {
+                    __typename
+                    option
+                  }
+                  messageFieldLabel
+                  submitLabel
+                  submitColor
+                  submitStyle
+                  successAction
+                  successMessage
+                  redirectUrl
+                  showInNav
+                  navLabel
+                  blockId
+                }
+                ... on SiteBlocksExperiments {
+                  heading
+                  description
+                  experimentsList {
+                    __typename
+                    ... on SiteBlocksExperimentsExperimentsListExperimentRef {
+                      experimentId {
+                        ... on Experiment {
+                          __typename
+                          title
+                          matrixCode
+                          logo
+                          matrixPoints
+                          description
+                        }
+                        ... on Document {
+                          _sys {
+                            filename
+                            basename
+                            hasReferences
+                            breadcrumbs
+                            path
+                            relativePath
+                            extension
+                          }
+                          id
+                        }
+                      }
+                    }
+                    ... on SiteBlocksExperimentsExperimentsListExperimentItem {
+                      title
+                      matrixCode
+                      logo
+                      matrixPoints
+                      description
+                      link {
+                        ... on Site {
+                          __typename
+                          title
+                          slug
+                          blocks {
+                            __typename
+                            ... on SiteBlocksHero {
+                              layout
+                              height
+                              backgroundType
+                              image
+                              videoUrl
+                              backgroundColor
+                              overlayColor
+                              overlayOpacity
+                              title
+                              subtitle
+                              primaryButton {
+                                __typename
+                                label
+                                url
+                              }
+                              secondaryButton {
+                                __typename
+                                label
+                                url
+                              }
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksTextSection {
+                              layout
+                              title
+                              subtitle
+                              body
+                              images {
+                                __typename
+                                src
+                                alt
+                              }
+                              primaryButton {
+                                __typename
+                                label
+                                url
+                              }
+                              secondaryButton {
+                                __typename
+                                label
+                                url
+                              }
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksInfoBoxes {
+                              title
+                              columns
+                              cards {
+                                __typename
+                                mediaType
+                                icon
+                                image
+                                title
+                                titleLink
+                                description
+                                button {
+                                  __typename
+                                  label
+                                  url
+                                }
+                              }
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksFeatureList {
+                              layout
+                              title
+                              intro
+                              items {
+                                __typename
+                                mediaType
+                                icon
+                                image
+                                title
+                                description
+                              }
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksGallery {
+                              title
+                              displayMode
+                              columns
+                              autoplay
+                              navigation
+                              images {
+                                __typename
+                                src
+                                alt
+                                caption
+                                titleOverlay
+                                linkUrl
+                              }
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksBigMedia {
+                              mediaType
+                              image
+                              videoUrl
+                              backgroundColor
+                              height
+                              heightPx
+                              overlayColor
+                              overlayOpacity
+                              title
+                              subtitle
+                              primaryButton {
+                                __typename
+                                label
+                                url
+                              }
+                              secondaryButton {
+                                __typename
+                                label
+                                url
+                              }
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksTestimonials {
+                              layout
+                              title
+                              intro
+                              items {
+                                __typename
+                                quote
+                                authorName
+                                authorTitle
+                                authorPhoto
+                                companyLogo
+                                rating
+                              }
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksSignupForm {
+                              title
+                              intro
+                              showNameField
+                              nameFieldLabel
+                              emailFieldLabel
+                              submitLabel
+                              submitColor
+                              submitStyle
+                              successAction
+                              successMessage
+                              redirectUrl
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksStats {
+                              layout
+                              columns
+                              title
+                              intro
+                              items {
+                                __typename
+                                number
+                                label
+                                mediaType
+                                icon
+                                image
+                              }
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksHtmlEmbed {
+                              title
+                              intro
+                              width
+                              heightType
+                              heightPx
+                              html
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksContactForm {
+                              title
+                              intro
+                              showNameField
+                              nameRequired
+                              nameFieldLabel
+                              emailFieldLabel
+                              showSubjectField
+                              subjectRequired
+                              subjectFieldLabel
+                              subjectType
+                              subjectOptions {
+                                __typename
+                                option
+                              }
+                              messageFieldLabel
+                              submitLabel
+                              submitColor
+                              submitStyle
+                              successAction
+                              successMessage
+                              redirectUrl
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                            ... on SiteBlocksExperiments {
+                              heading
+                              description
+                              experimentsList {
+                                __typename
+                                ... on SiteBlocksExperimentsExperimentsListExperimentItem {
+                                  title
+                                  matrixCode
+                                  logo
+                                  matrixPoints
+                                  description
+                                }
+                              }
+                              showInNav
+                              navLabel
+                              blockId
+                            }
+                          }
+                        }
+                        ... on Document {
+                          _sys {
+                            filename
+                            basename
+                            hasReferences
+                            breadcrumbs
+                            path
+                            relativePath
+                            extension
+                          }
+                          id
+                        }
+                      }
+                    }
+                  }
+                  showInNav
+                  navLabel
+                  blockId
+                }
+              }
+            }
+            ... on Document {
+              _sys {
+                filename
+                basename
+                hasReferences
+                breadcrumbs
+                path
+                relativePath
+                extension
+              }
+              id
+            }
+          }
+        }
       }
       showInNav
       navLabel
@@ -1682,11 +2547,544 @@ export const ExperimentPartsFragmentDoc = gql`
     fragment ExperimentParts on Experiment {
   __typename
   title
-  logo
   matrixCode
+  logo
   matrixPoints
   description
-  link
+  link {
+    ... on Site {
+      __typename
+      title
+      slug
+      blocks {
+        __typename
+        ... on SiteBlocksHero {
+          layout
+          height
+          backgroundType
+          image
+          videoUrl
+          backgroundColor
+          overlayColor
+          overlayOpacity
+          title
+          subtitle
+          primaryButton {
+            __typename
+            label
+            url
+          }
+          secondaryButton {
+            __typename
+            label
+            url
+          }
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksTextSection {
+          layout
+          title
+          subtitle
+          body
+          images {
+            __typename
+            src
+            alt
+          }
+          primaryButton {
+            __typename
+            label
+            url
+          }
+          secondaryButton {
+            __typename
+            label
+            url
+          }
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksInfoBoxes {
+          title
+          columns
+          cards {
+            __typename
+            mediaType
+            icon
+            image
+            title
+            titleLink
+            description
+            button {
+              __typename
+              label
+              url
+            }
+          }
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksFeatureList {
+          layout
+          title
+          intro
+          items {
+            __typename
+            mediaType
+            icon
+            image
+            title
+            description
+          }
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksGallery {
+          title
+          displayMode
+          columns
+          autoplay
+          navigation
+          images {
+            __typename
+            src
+            alt
+            caption
+            titleOverlay
+            linkUrl
+          }
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksBigMedia {
+          mediaType
+          image
+          videoUrl
+          backgroundColor
+          height
+          heightPx
+          overlayColor
+          overlayOpacity
+          title
+          subtitle
+          primaryButton {
+            __typename
+            label
+            url
+          }
+          secondaryButton {
+            __typename
+            label
+            url
+          }
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksTestimonials {
+          layout
+          title
+          intro
+          items {
+            __typename
+            quote
+            authorName
+            authorTitle
+            authorPhoto
+            companyLogo
+            rating
+          }
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksSignupForm {
+          title
+          intro
+          showNameField
+          nameFieldLabel
+          emailFieldLabel
+          submitLabel
+          submitColor
+          submitStyle
+          successAction
+          successMessage
+          redirectUrl
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksStats {
+          layout
+          columns
+          title
+          intro
+          items {
+            __typename
+            number
+            label
+            mediaType
+            icon
+            image
+          }
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksHtmlEmbed {
+          title
+          intro
+          width
+          heightType
+          heightPx
+          html
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksContactForm {
+          title
+          intro
+          showNameField
+          nameRequired
+          nameFieldLabel
+          emailFieldLabel
+          showSubjectField
+          subjectRequired
+          subjectFieldLabel
+          subjectType
+          subjectOptions {
+            __typename
+            option
+          }
+          messageFieldLabel
+          submitLabel
+          submitColor
+          submitStyle
+          successAction
+          successMessage
+          redirectUrl
+          showInNav
+          navLabel
+          blockId
+        }
+        ... on SiteBlocksExperiments {
+          heading
+          description
+          experimentsList {
+            __typename
+            ... on SiteBlocksExperimentsExperimentsListExperimentRef {
+              experimentId {
+                ... on Experiment {
+                  __typename
+                  title
+                  matrixCode
+                  logo
+                  matrixPoints
+                  description
+                }
+                ... on Document {
+                  _sys {
+                    filename
+                    basename
+                    hasReferences
+                    breadcrumbs
+                    path
+                    relativePath
+                    extension
+                  }
+                  id
+                }
+              }
+            }
+            ... on SiteBlocksExperimentsExperimentsListExperimentItem {
+              title
+              matrixCode
+              logo
+              matrixPoints
+              description
+              link {
+                ... on Site {
+                  __typename
+                  title
+                  slug
+                  blocks {
+                    __typename
+                    ... on SiteBlocksHero {
+                      layout
+                      height
+                      backgroundType
+                      image
+                      videoUrl
+                      backgroundColor
+                      overlayColor
+                      overlayOpacity
+                      title
+                      subtitle
+                      primaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      secondaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksTextSection {
+                      layout
+                      title
+                      subtitle
+                      body
+                      images {
+                        __typename
+                        src
+                        alt
+                      }
+                      primaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      secondaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksInfoBoxes {
+                      title
+                      columns
+                      cards {
+                        __typename
+                        mediaType
+                        icon
+                        image
+                        title
+                        titleLink
+                        description
+                        button {
+                          __typename
+                          label
+                          url
+                        }
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksFeatureList {
+                      layout
+                      title
+                      intro
+                      items {
+                        __typename
+                        mediaType
+                        icon
+                        image
+                        title
+                        description
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksGallery {
+                      title
+                      displayMode
+                      columns
+                      autoplay
+                      navigation
+                      images {
+                        __typename
+                        src
+                        alt
+                        caption
+                        titleOverlay
+                        linkUrl
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksBigMedia {
+                      mediaType
+                      image
+                      videoUrl
+                      backgroundColor
+                      height
+                      heightPx
+                      overlayColor
+                      overlayOpacity
+                      title
+                      subtitle
+                      primaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      secondaryButton {
+                        __typename
+                        label
+                        url
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksTestimonials {
+                      layout
+                      title
+                      intro
+                      items {
+                        __typename
+                        quote
+                        authorName
+                        authorTitle
+                        authorPhoto
+                        companyLogo
+                        rating
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksSignupForm {
+                      title
+                      intro
+                      showNameField
+                      nameFieldLabel
+                      emailFieldLabel
+                      submitLabel
+                      submitColor
+                      submitStyle
+                      successAction
+                      successMessage
+                      redirectUrl
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksStats {
+                      layout
+                      columns
+                      title
+                      intro
+                      items {
+                        __typename
+                        number
+                        label
+                        mediaType
+                        icon
+                        image
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksHtmlEmbed {
+                      title
+                      intro
+                      width
+                      heightType
+                      heightPx
+                      html
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksContactForm {
+                      title
+                      intro
+                      showNameField
+                      nameRequired
+                      nameFieldLabel
+                      emailFieldLabel
+                      showSubjectField
+                      subjectRequired
+                      subjectFieldLabel
+                      subjectType
+                      subjectOptions {
+                        __typename
+                        option
+                      }
+                      messageFieldLabel
+                      submitLabel
+                      submitColor
+                      submitStyle
+                      successAction
+                      successMessage
+                      redirectUrl
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                    ... on SiteBlocksExperiments {
+                      heading
+                      description
+                      experimentsList {
+                        __typename
+                        ... on SiteBlocksExperimentsExperimentsListExperimentItem {
+                          title
+                          matrixCode
+                          logo
+                          matrixPoints
+                          description
+                        }
+                      }
+                      showInNav
+                      navLabel
+                      blockId
+                    }
+                  }
+                }
+                ... on Document {
+                  _sys {
+                    filename
+                    basename
+                    hasReferences
+                    breadcrumbs
+                    path
+                    relativePath
+                    extension
+                  }
+                  id
+                }
+              }
+            }
+          }
+          showInNav
+          navLabel
+          blockId
+        }
+      }
+    }
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+  }
 }
     `;
 export const SiteDocument = gql`

@@ -612,28 +612,57 @@ var contactFormTemplate = {
     ...navFields
   ]
 };
+var experimentItemTemplate = {
+  name: "experimentItem",
+  label: "New Experiment",
+  fields: [
+    { name: "title", label: "Title", type: "string", required: true },
+    { name: "matrixCode", label: "Matrix Code", type: "string", required: true },
+    { name: "logo", label: "Square Logo", type: "image" },
+    {
+      name: "matrixPoints",
+      label: "Matrix Points",
+      type: "number"
+    },
+    { name: "description", label: "Description", type: "rich-text" },
+    {
+      name: "link",
+      label: "Link to Site",
+      type: "reference",
+      collections: ["site"]
+    }
+  ]
+};
+var experimentRefTemplate = {
+  name: "experimentRef",
+  label: "Existing Experiment",
+  fields: [
+    {
+      name: "experimentId",
+      label: "Select Experiment",
+      type: "reference",
+      collections: ["experiment"]
+    }
+  ]
+};
 var experimentsTemplate = {
   name: "experiments",
   label: "Experiments",
   fields: [
+    { name: "heading", label: "Heading", type: "string" },
+    { name: "description", label: "Description", type: "string" },
     {
-      name: "experiments",
-      label: "Experiments",
+      name: "experimentsList",
+      label: "Experiments (Add 1-100)",
       type: "object",
       list: true,
-      ui: { itemProps: (item) => ({ label: item?.title || "Experiment" }) },
-      fields: [
-        { name: "title", label: "Title", type: "string", required: true },
-        { name: "logo", label: "Square Logo", type: "image" },
-        { name: "matrixCode", label: "Matrix Code", type: "string" },
-        {
-          name: "matrixPoints",
-          label: "Matrix Points",
-          type: "number"
-        },
-        { name: "description", label: "Description", type: "rich-text" },
-        { name: "link", label: "Link", type: "string" }
-      ]
+      ui: {
+        itemProps: (item) => ({
+          label: item?.title || item?.experimentId || "Experiment"
+        }),
+        max: 100
+      },
+      templates: [experimentRefTemplate, experimentItemTemplate]
     },
     ...navFields
   ]
@@ -719,22 +748,32 @@ var config_default = defineConfig({
       {
         name: "experiment",
         label: "Experiments",
-        path: "content/experiments/{{data.matrixCode}}",
+        path: "content/experiments",
         format: "md",
         ui: {
-          router: ({ document }) => `/experiments/${document._sys.filename}`
+          router: ({ document }) => `/experiments/${document._sys.filename}`,
+          filename: {
+            slugify: (doc) => {
+              return doc.matrixCode ? doc.matrixCode.toLowerCase().replace(/[^\w-]/g, "") : "experiment";
+            }
+          }
         },
         fields: [
           { name: "title", label: "Title", type: "string", required: true },
+          { name: "matrixCode", label: "Matrix Code", type: "string", required: true },
           { name: "logo", label: "Square Logo", type: "image" },
-          { name: "matrixCode", label: "Matrix Code", type: "string" },
           {
             name: "matrixPoints",
             label: "Matrix Points",
             type: "number"
           },
           { name: "description", label: "Description", type: "rich-text" },
-          { name: "link", label: "Link", type: "string" }
+          {
+            name: "link",
+            label: "Link to Site",
+            type: "reference",
+            collections: ["site"]
+          }
         ]
       }
     ]

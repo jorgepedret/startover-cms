@@ -337,17 +337,29 @@ type SiteBlocksContactForm {
   blockId: String
 }
 
-type SiteBlocksExperimentsExperiments {
-  title: String!
-  logo: String
-  matrixCode: String
-  matrixPoints: Float
-  description: JSON
-  link: String
+union SiteBlocksExperimentsExperimentsListExperimentRefExperimentId = Experiment
+
+type SiteBlocksExperimentsExperimentsListExperimentRef {
+  experimentId: SiteBlocksExperimentsExperimentsListExperimentRefExperimentId
 }
 
+union SiteBlocksExperimentsExperimentsListExperimentItemLink = Site
+
+type SiteBlocksExperimentsExperimentsListExperimentItem {
+  title: String!
+  matrixCode: String!
+  logo: String
+  matrixPoints: Float
+  description: JSON
+  link: SiteBlocksExperimentsExperimentsListExperimentItemLink
+}
+
+union SiteBlocksExperimentsExperimentsList = SiteBlocksExperimentsExperimentsListExperimentRef | SiteBlocksExperimentsExperimentsListExperimentItem
+
 type SiteBlocksExperiments {
-  experiments: [SiteBlocksExperimentsExperiments]
+  heading: String
+  description: String
+  experimentsList: [SiteBlocksExperimentsExperimentsList]
   showInNav: Boolean
   navLabel: String
   blockId: String
@@ -640,17 +652,36 @@ input SiteBlocksContactFormFilter {
   blockId: StringFilter
 }
 
-input SiteBlocksExperimentsExperimentsFilter {
+input SiteBlocksExperimentsExperimentsListExperimentRefExperimentIdFilter {
+  experiment: ExperimentFilter
+}
+
+input SiteBlocksExperimentsExperimentsListExperimentRefFilter {
+  experimentId: SiteBlocksExperimentsExperimentsListExperimentRefExperimentIdFilter
+}
+
+input SiteBlocksExperimentsExperimentsListExperimentItemLinkFilter {
+  site: SiteFilter
+}
+
+input SiteBlocksExperimentsExperimentsListExperimentItemFilter {
   title: StringFilter
-  logo: ImageFilter
   matrixCode: StringFilter
+  logo: ImageFilter
   matrixPoints: NumberFilter
   description: RichTextFilter
-  link: StringFilter
+  link: SiteBlocksExperimentsExperimentsListExperimentItemLinkFilter
+}
+
+input SiteBlocksExperimentsExperimentsListFilter {
+  experimentRef: SiteBlocksExperimentsExperimentsListExperimentRefFilter
+  experimentItem: SiteBlocksExperimentsExperimentsListExperimentItemFilter
 }
 
 input SiteBlocksExperimentsFilter {
-  experiments: SiteBlocksExperimentsExperimentsFilter
+  heading: StringFilter
+  description: StringFilter
+  experimentsList: SiteBlocksExperimentsExperimentsListFilter
   showInNav: BooleanFilter
   navLabel: StringFilter
   blockId: StringFilter
@@ -736,25 +767,31 @@ type TemplateConnection implements Connection {
   edges: [TemplateConnectionEdges]
 }
 
+union ExperimentLink = Site
+
 type Experiment implements Node & Document {
   title: String!
+  matrixCode: String!
   logo: String
-  matrixCode: String
   matrixPoints: Float
   description: JSON
-  link: String
+  link: ExperimentLink
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
+input ExperimentLinkFilter {
+  site: SiteFilter
+}
+
 input ExperimentFilter {
   title: StringFilter
-  logo: ImageFilter
   matrixCode: StringFilter
+  logo: ImageFilter
   matrixPoints: NumberFilter
   description: RichTextFilter
-  link: StringFilter
+  link: ExperimentLinkFilter
 }
 
 type ExperimentConnectionEdges {
@@ -1040,17 +1077,28 @@ input SiteBlocksContactFormMutation {
   blockId: String
 }
 
-input SiteBlocksExperimentsExperimentsMutation {
+input SiteBlocksExperimentsExperimentsListExperimentRefMutation {
+  experimentId: String
+}
+
+input SiteBlocksExperimentsExperimentsListExperimentItemMutation {
   title: String
-  logo: String
   matrixCode: String
+  logo: String
   matrixPoints: Float
   description: JSON
   link: String
 }
 
+input SiteBlocksExperimentsExperimentsListMutation {
+  experimentRef: SiteBlocksExperimentsExperimentsListExperimentRefMutation
+  experimentItem: SiteBlocksExperimentsExperimentsListExperimentItemMutation
+}
+
 input SiteBlocksExperimentsMutation {
-  experiments: [SiteBlocksExperimentsExperimentsMutation]
+  heading: String
+  description: String
+  experimentsList: [SiteBlocksExperimentsExperimentsListMutation]
   showInNav: Boolean
   navLabel: String
   blockId: String
@@ -1089,8 +1137,8 @@ input TemplateMutation {
 
 input ExperimentMutation {
   title: String
-  logo: String
   matrixCode: String
+  logo: String
   matrixPoints: Float
   description: JSON
   link: String
