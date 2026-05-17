@@ -158,5 +158,20 @@ blocks:
     messageFieldLabel: Message
     submitLabel: Send it Our Way
     _template: contactForm
+  - heading: Experiments
+    description: Ahh yeah!
+    experimentsList:
+      - title: Write in your beepbook
+        matrixCode: 10DOORWAYS.01
+        logo: /uploads/Gemini_Generated_Image_owx55uowx55uowx5.png
+        matrixPoints: 1
+        description: |
+          Write, just write.
+        link: content/sites/thoughtmap.md
+        _template: experimentItem
+    showInNav: true
+    navLabel: Experiments
+    blockId: experiments
+    _template: experiments
 ---
 
