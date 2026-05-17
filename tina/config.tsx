@@ -661,33 +661,59 @@ const contactFormTemplate = {
 // ---------------------------------------------------------------------------
 // 12. Experiments
 // ---------------------------------------------------------------------------
+const experimentItemTemplate = {
+  name: "experimentItem",
+  label: "New Experiment",
+  fields: [
+    { name: "title", label: "Title", type: "string" as const, required: true },
+    { name: "matrixCode", label: "Matrix Code", type: "string" as const, required: true },
+    { name: "logo", label: "Square Logo", type: "image" as const },
+    {
+      name: "matrixPoints",
+      label: "Matrix Points",
+      type: "number" as const,
+    },
+    { name: "description", label: "Description", type: "rich-text" as const },
+    {
+      name: "link",
+      label: "Link to Site",
+      type: "reference" as const,
+      collections: ["site"],
+    },
+  ],
+};
+
+const experimentRefTemplate = {
+  name: "experimentRef",
+  label: "Existing Experiment",
+  fields: [
+    {
+      name: "experimentId",
+      label: "Select Experiment",
+      type: "reference" as const,
+      collections: ["experiment"],
+    },
+  ],
+};
+
 const experimentsTemplate = {
   name: "experiments",
   label: "Experiments",
   fields: [
+    { name: "heading", label: "Heading", type: "string" as const },
+    { name: "description", label: "Description", type: "string" as const },
     {
-      name: "experiments",
-      label: "Experiments",
+      name: "experimentsList",
+      label: "Experiments (Add 1-100)",
       type: "object" as const,
       list: true as const,
-      ui: { itemProps: (item: { title?: string }) => ({ label: item?.title || "Experiment" }) },
-      fields: [
-        { name: "title", label: "Title", type: "string" as const, required: true },
-        { name: "logo", label: "Square Logo", type: "image" as const },
-        { name: "matrixCode", label: "Matrix Code", type: "string" as const },
-        {
-          name: "matrixPoints",
-          label: "Matrix Points",
-          type: "number" as const,
-        },
-        { name: "description", label: "Description", type: "rich-text" as const },
-        {
-          name: "link",
-          label: "Link to Site",
-          type: "reference" as const,
-          collections: ["site"],
-        },
-      ],
+      ui: {
+        itemProps: (item: { title?: string; experimentId?: string }) => ({
+          label: item?.title || item?.experimentId || "Experiment"
+        }),
+        max: 100,
+      },
+      templates: [experimentRefTemplate, experimentItemTemplate],
     },
     ...navFields,
   ],
